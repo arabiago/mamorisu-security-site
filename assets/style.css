@@ -294,6 +294,7 @@ a.toc-item:focus-visible{outline:3px solid var(--kagi);outline-offset:-2px}
 .vs thead th{font-family:var(--display);font-size:13px;color:var(--muted);background:var(--bg)}
 .vs tbody tr:last-child td,.vs tbody tr:last-child th{border-bottom:0}
 .vs tbody th{font-family:var(--display);font-weight:800}
+.vs th:first-child{min-width:8em}
 .m{display:inline-block;font-family:var(--display);font-weight:800;padding:1px 8px;border-radius:999px;font-size:13px;white-space:nowrap}
 .m.y{background:var(--ok-soft);color:var(--ok)} .m.p{background:var(--warn-soft);color:var(--warn)} .m.n{background:var(--ng-soft);color:var(--ng)}
 
@@ -350,6 +351,37 @@ a.toc-item:focus-visible{outline:3px solid var(--kagi);outline-offset:-2px}
 .fake-cap .fake-tag{align-self:flex-start;font-family:var(--display);font-weight:800;font-size:12px;padding:1px 10px;border-radius:999px;background:var(--ng-soft);color:var(--ng)}
 .fake-cap b{font-family:var(--display);font-size:16px}
 .fake-cap ol{margin:0;padding-left:1.4em;font-size:15px}
+
+/* encryption: cipher output + brute-force list (key slider reuses .bio-th) */
+.cx-out{display:block;font-family:var(--mono);font-size:18px;padding:10px 14px;min-height:48px;border-radius:14px;background:var(--bg);border:1.5px solid var(--line);overflow-wrap:anywhere}
+.cx-out.hex{font-size:13px;color:var(--muted)}
+.cx-tries{margin:0;padding:6px;list-style:none;max-height:220px;overflow-y:auto;border-radius:14px;background:var(--bg);border:1.5px solid var(--line)}
+.cx-tries li{display:grid;grid-template-columns:4.5em minmax(0,1fr);gap:8px;padding:2px 8px;border-radius:8px;font-size:14px;overflow-wrap:anywhere}
+.cx-tries .k{color:var(--muted);font-variant-numeric:tabular-nums}
+.cx-tries li.hit{background:var(--ok-soft);font-weight:700}
+.cx-tries li.hit .k{color:var(--ok)}
+
+/* https: address-bar quiz (answer buttons reuse quiz .opt / .fb) */
+.urlq{display:flex;flex-direction:column;gap:14px}
+.uq{display:flex;flex-direction:column;gap:8px}
+.addr{display:flex;align-items:center;gap:8px;padding:8px 14px;min-height:44px;border-radius:999px;background:var(--bg);border:1.5px solid var(--line)}
+.addr .lk{flex:0 0 auto;display:grid;place-items:center}
+.addr .lk svg{width:16px;height:16px;fill:var(--muted);stroke:var(--muted)}
+.addr.nolock .lk{font-family:var(--display);font-size:11px;font-weight:800;line-height:1.3;color:var(--ng)}
+.addr .url{min-width:0;font-family:var(--mono);font-size:14px;color:var(--muted);overflow-wrap:anywhere}
+.addr .dom{color:var(--ink)}
+.addr.shown .dom{font-weight:700;padding:0 3px;border-radius:4px;background:var(--kagi-soft);color:var(--kagi)}
+
+/* signature: certificate cards */
+.certs{display:flex;flex-direction:column;gap:12px}
+.cert{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:14px 16px;border-radius:16px;background:var(--bg);border:1.5px solid var(--line)}
+.cert-head{font-family:var(--display);font-size:15px}
+.cert dl{margin:0;width:100%;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 12px;font-size:14px}
+.cert dt{color:var(--muted);font-size:13px}
+.cert dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.cert dd.mono{font-family:var(--mono)}
+.cert .res{width:100%}
+@media (max-width:480px){.cert dl{grid-template-columns:1fr}.cert dd{margin-bottom:4px}}
 
 /* ---------- quiz ---------- */
 .quiz{display:flex;flex-direction:column;gap:14px}

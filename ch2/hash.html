@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ハッシュ:データの指紋</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第2章 暗号</span>
+  <h1>ハッシュ:データの指紋</h1>
+  <p class="sub">1文字でも変われば、指紋はまるごと変わる</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>アプリのダウンロードページに、<code>SHA-256: 3a7f…</code> っていう、なぞの長い英数字が書いてあったよ。これって暗号？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>それは<strong>ハッシュ</strong>。データの<strong>指紋</strong>のようなものだよ。人の指紋は小さいけれど、それだけで本人を見分けられる。ハッシュも、どんなに大きなデータからでも、短い「指紋」を作れるんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">データの指紋の3つの性質</h2></div>
+  <div class="ways">
+    <div class="way"><b>同じなら同じ</b><span>同じデータからは、いつ、だれが計算しても同じ指紋</span></div>
+    <div class="way"><b>少しでもちがえば別もの</b><span>1文字ちがうだけで、指紋はまるごと変わる</span></div>
+    <div class="way"><b>元にもどせない</b><span>指紋から、元のデータを計算で作ることはできない</span></div>
+  </div>
+  <div class="key k1"><span class="tag">ハッシュ</span><span class="term">データから作る、決まった長さの「指紋」</span><span class="def">1文字の文でも、映画1本分のデータでも、SHA-256という計算なら、指紋はいつも<strong>英数字64文字</strong>(256ビット)。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">やってみよう:指紋計算機</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>2つの文の指紋をくらべよう</h3><span>入力した文字は、このページの外に送られません</span></div>
+    <div>
+      <label for="hA">文A</label>
+      <input class="pw" id="hA" type="text" value="どんぐりを10こ送ります" autocomplete="off" spellcheck="false">
+    </div>
+    <output class="cx-out hex" id="oA" for="hA"></output>
+    <div>
+      <label for="hB">文B</label>
+      <input class="pw" id="hB" type="text" value="どんぐりを100こ送ります" autocomplete="off" spellcheck="false">
+    </div>
+    <output class="cx-out hex" id="oB" for="hB"></output>
+    <div class="samples"><span>ためす:</span>
+      <button class="sample" type="button" id="sameB">BをAと同じにする</button>
+      <button class="sample" type="button" id="longA">Aをとても長い文にする</button>
+    </div>
+    <p class="res" id="hRes" aria-live="polite" hidden></p>
+    <p class="assume">指紋の計算には SHA-256 を使っています。このページの中で計算しています。</p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>「10こ」と「100こ」で、指紋が似ても似つかない！ 長い文にしても、指紋の長さは同じだね。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>だから、ダウンロードしたファイルの指紋を計算して、ページに書いてある指紋と同じなら、<strong>途中で書きかえられていない</strong>と分かるんだ。</p></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ちぇっ、ウイルス入りのアプリにこっそり入れかえても、指紋でバレるのか…。</p></div>
+  <div class="key k2"><span class="tag">改ざん</span><span class="term">データを、こっそり書きかえること</span><span class="def">ハッシュは、改ざんを見つけるのが得意。ただし、ページの指紋ごと書きかえられたら意味がないので、指紋は信頼できる場所で確かめる。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">暗号化とのちがい</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>ぐちゃぐちゃな英数字になるのは、暗号化と同じに見えるけど…。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>大きなちがいは、ハッシュには<strong>鍵がなくて、元にもどせない</strong>こと。暗号化は「あとで読むため」、ハッシュは「同じかどうか確かめるため」の道具なんだ。</p></div>
+  <div class="tablewrap">
+    <table class="vs">
+      <thead><tr><th scope="col">くらべること</th><th scope="col">暗号化</th><th scope="col">ハッシュ</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">鍵</th><td><span class="m p">使う</span></td><td><span class="m p">使わない</span></td></tr>
+        <tr><th scope="row">元にもどせる？</th><td><span class="m y">○ 鍵があればもどせる</span></td><td><span class="m n">✕ もどせない</span></td></tr>
+        <tr><th scope="row">結果の長さ</th><td><span class="m p">元のデータに合わせて変わる</span></td><td><span class="m p">いつも同じ</span></td></tr>
+        <tr><th scope="row">使いみち</th><td><span class="m p">ひみつを送る・しまう</span></td><td><span class="m p">同じかどうか確かめる</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">パスワードも指紋でしまう</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>ちゃんとしたサイトは、きみのパスワードをそのまま保存しない。<strong>パスワードの指紋</strong>だけを保存しておいて、ログインのときに入力されたパスワードの指紋と見比べるんだ。</p></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、指紋のリストを盗んできたぞ。元にもどせなくても、<strong>よくあるパスワードの指紋</strong>を自分で計算して、見比べればいいのさ！</p></div>
+  <div class="lab">
+    <div class="lab-head"><h3>盗まれた指紋リストを当てられる？</h3><span>このページの中だけで動くまねです</span></div>
+    <p class="lab-intro">フィッシーは、あるサイトから会員のパスワードの指紋を盗みました。手元には「よくあるパスワード」<span id="dictN">20</span>個のリストがあります。</p>
+    <div class="accts" id="leak"></div>
+    <div class="btns"><button class="btn deny" type="button" id="attack" disabled>フィッシーが見比べる</button></div>
+    <p class="res" id="atkRes" aria-live="polite" hidden></p>
+    <p class="assume">本物のサイトでは、ひとりずつ別の「ソルト(味つけ)」を混ぜたり、わざと計算を遅くしたりして、この作戦をやりにくくしています。それでも、よくあるパスワードは当てられやすいままです。</p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>ぼくのパスフレーズは、リストになかったから無事だった！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>指紋は元にもどせなくても、<strong>答えの候補をためす</strong>ことはできる。だから「強いパスワード」のページで学んだ、長くて予想されにくいパスワードが大事なんだよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">しくみ</span><h3>データの指紋</h3><p>どんなデータも決まった長さに</p><p class="ex">1文字ちがえば、まるごと変わる</p></div>
+    <div class="card c2"><span class="en">使いみち</span><h3>同じかどうか確かめる</h3><p>改ざんを見つける</p><p class="ex">パスワードの保存にも使う</p></div>
+    <div class="card c3"><span class="en">気をつけること</span><h3>候補はためせる</h3><p>元にもどせなくても、当てられる</p><p class="ex">よくあるパスワードは使わない</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>鍵のいらない暗号の道具もあるんだね。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>これで、共通鍵、公開鍵、ハッシュの3つの道具がそろった。次は、ブラウザの「鍵マーク」で、この3つがどう組み合わさって働いているかを見てみよう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>「123456」の人、まだいるかなあ…。せっかく盗んだのに、パスフレーズの人はぜんぜん当たらない…。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- SHA-256 fingerprints + dictionary attack, in this page only ---------- */
+(function(){
+  var subtle = window.crypto && crypto.subtle;
+  function hex(buf){ var a = new Uint8Array(buf), s = ""; for (var i = 0; i < a.length; i++) s += a[i].toString(16).padStart(2,"0"); return s; }
+  function sha(text){ return subtle.digest("SHA-256", new TextEncoder().encode(text)); }
+  function result(el, kind, head, text){
+    el.hidden = false; el.className = "res " + kind; el.textContent = "";
+    var b = document.createElement("b"); b.textContent = head; el.appendChild(b);
+    el.appendChild(document.createTextNode(text));
+  }
+  var hRes = document.getElementById("hRes"), atkRes = document.getElementById("atkRes");
+  if (!subtle){
+    result(hRes, "info", "", "このブラウザでは、指紋の計算を使えません。");
+    result(atkRes, "info", "", "このブラウザでは、指紋の計算を使えません。");
+    return;
+  }
+
+  /* --- lab 1: compare two fingerprints --- */
+  var a = document.getElementById("hA"), b = document.getElementById("hB"), oA = document.getElementById("oA"), oB = document.getElementById("oB");
+  var seq = 0;
+  function compare(){
+    var my = ++seq;
+    Promise.all([sha(a.value), sha(b.value)]).then(function(r){
+      if (my !== seq) return; /* a newer keystroke already started */
+      oA.textContent = hex(r[0]); oB.textContent = hex(r[1]);
+      var x = new Uint8Array(r[0]), y = new Uint8Array(r[1]), bits = 0;
+      for (var i = 0; i < x.length; i++){ var d = x[i] ^ y[i]; while (d){ bits += d & 1; d >>= 1; } }
+      if (bits === 0) result(hRes, "ok", "指紋が同じ！ ", "同じ文からは、いつも同じ指紋になります。");
+      else result(hRes, "info", "指紋がちがう。 ", "256ビットのうち " + bits + " ビットがちがいます(約" + Math.round(bits / 2.56) + "%)。少しの変化でも、だいたい半分が入れかわります。");
+    });
+  }
+  a.addEventListener("input", compare);
+  b.addEventListener("input", compare);
+  document.getElementById("sameB").addEventListener("click", function(){ b.value = a.value; compare(); });
+  document.getElementById("longA").addEventListener("click", function(){
+    a.value = new Array(51).join("どんぐりを埋めた場所は、大きなクリの木の下から北へ三歩。");
+    compare();
+  });
+  compare();
+
+  /* --- lab 2: stolen fingerprint list vs. a list of common passwords --- */
+  var DICT = ["123456","password","12345678","qwerty","abc123","111111","iloveyou","123123","admin","letmein",
+              "000000","dragon","sunshine","monkey","football","baseball","princess","welcome","pokemon","doraemon"];
+  var MEMBERS = [
+    {name:"会員1", pw:"123456"},
+    {name:"会員2", pw:"pokemon"},
+    {name:"会員3", pw:"qwerty"},
+    {name:"まもリス君", pw:"kuri-yuki-tsuki-hashiru-kame"}
+  ];
+  var leak = document.getElementById("leak"), btn = document.getElementById("attack");
+  document.getElementById("dictN").textContent = DICT.length;
+  var rows = [];
+  Promise.all(MEMBERS.map(function(m){ return sha(m.pw).then(hex); })).then(function(hs){
+    MEMBERS.forEach(function(m, i){
+      m.hash = hs[i];
+      var row = document.createElement("div"); row.className = "acct";
+      var nm = document.createElement("span"); nm.className = "nm"; nm.textContent = m.name;
+      var sm = document.createElement("small"); sm.textContent = "保存されていた指紋 " + m.hash.slice(0, 16) + "…"; nm.appendChild(sm);
+      var st = document.createElement("span"); st.className = "st"; st.textContent = "まだ";
+      row.appendChild(nm); row.appendChild(st); leak.appendChild(row);
+      rows.push(st);
+    });
+    btn.disabled = false;
+  });
+  btn.addEventListener("click", function(){
+    btn.disabled = true;
+    Promise.all(DICT.map(function(w){ return sha(w).then(function(h){ return [hex(h), w]; }); })).then(function(pairs){
+      var table = {}, found = 0;
+      pairs.forEach(function(p){ table[p[0]] = p[1]; });
+      MEMBERS.forEach(function(m, i){
+        var w = table[m.hash];
+        rows[i].className = "st " + (w ? "hit" : "safe");
+        rows[i].textContent = w ? "✕ " + w + " とバレた" : "○ 当たらない";
+        if (w) found++;
+      });
+      result(atkRes, found ? "ng" : "ok", MEMBERS.length + "人中 " + found + "人のパスワードがバレた。 ",
+        "フィッシーは、" + DICT.length + "個の候補の指紋を計算して、盗んだ指紋と同じものを探しただけです。");
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"「どんぐり10こ」を「どんぐり100こ」に変えた。ハッシュ(指紋)はどうなる？", opts:["少しだけ変わる","まるごと別ものになる","変わらない"], a:1,
+     why:"1文字ちがうだけで、指紋はまるごと変わります。だから、こっそり書きかえられても見つけられます。"},
+    {q:"ハッシュと暗号化のちがいとして、正しいのはどれ？", opts:["ハッシュは鍵があれば元にもどせる","ハッシュは元にもどせない","ちがいはない"], a:1,
+     why:"ハッシュには鍵がなく、元にもどせません。「同じかどうか」を確かめるための道具です。"},
+    {q:"パスワードの指紋が盗まれた。いちばんバレにくいのはどれ？", opts:["123456","pokemon","kuri-yuki-tsuki-hashiru-kame"], a:2, mono:true,
+     why:"指紋は元にもどせなくても、よくあるパスワードを順にためせば当てられます。長くて予想されにくいパスフレーズは、候補リストに入っていません。"}
+  ],
+  perfect: "データの指紋、ばっちりです！",
+  again: "上の指紋計算機で、文を少しずつ変えてためしてみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

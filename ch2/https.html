@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>鍵マーク(HTTPS)の本当の意味</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第2章 暗号</span>
+  <h1>鍵マーク(HTTPS)の本当の意味</h1>
+  <p class="sub">鍵マークは「安全なサイト」の印じゃない</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>アドレス欄に鍵マークがついているサイトは、安全なサイトなんだよね？ 鍵マークを見てから、パスワードを入れるようにしてるんだ。</p></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク…ぼくのにせサイトにも、ちゃーんと鍵マークがついてるよ。</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>ええっ！？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>鍵マークの仲間として、はっきり言っておこう。鍵マークが約束しているのは「<strong>通り道が守られている</strong>」ことだけ。「<strong>相手がいい人</strong>」とは言っていないんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">鍵マークが守っているもの</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>アドレスが <code>https</code> で始まるページとやりとりするとき、ブラウザとサイトの間では、この章で学んだ道具がいっしょに働いているよ。</p></div>
+  <div class="flow three">
+    <div class="gate g1"><span class="step">1. 相手を確かめる</span><b>証明書</b><span class="ask">このアドレスの持ち主のサーバー？</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g2"><span class="step">2. 鍵を決める</span><b>公開鍵のしくみ</b><span class="ask">ふたりだけの共通鍵を安全に決める</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g1"><span class="step">3. 中身を送る</span><b>共通鍵で暗号化</b><span class="ask">書きかえられたら気づく</span></div>
+  </div>
+  <div class="key k1"><span class="tag">HTTPS</span><span class="term">Webサイトとのやりとりを暗号化するしくみ</span><span class="def">途中でのぞかれない、途中で書きかえられない、そして<strong>アドレス欄に表示されたドメインの持ち主</strong>のサーバーと話している。この3つを守ってくれる。</span></div>
+  <div class="tablewrap">
+    <table class="vs">
+      <thead><tr><th scope="col">鍵マークで分かること</th><th scope="col">分かる？</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">途中でのぞかれない</th><td><span class="m y">○ 分かる</span></td></tr>
+        <tr><th scope="row">途中で書きかえられない</th><td><span class="m y">○ 分かる</span></td></tr>
+        <tr><th scope="row">アドレス欄のドメインの持ち主と話している</th><td><span class="m y">○ 分かる</span></td></tr>
+        <tr><th scope="row">そのドメインが、本物の会社のものか</th><td><span class="m n">✕ 分からない</span></td></tr>
+        <tr><th scope="row">運営しているのが、いい人か</th><td><span class="m n">✕ 分からない</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>そういうこと。<code>donguri-bnak.example</code> を手に入れたのはぼくだから、ぼくのサーバーは、そのアドレスの「本物の持ち主」なのさ。鍵マークの手続きも、無料ですぐ終わったよ。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>いまでは、にせサイトの多くにも鍵マークがついている。だから、鍵マークの次に見るべきなのは<strong>ドメイン</strong>なんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">ドメインの読み方</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>アドレスの <code>https://</code> のあと、最初の <code>/</code> までがドメイン。持ち主を決めるのは、その<strong>いちばん右の部分</strong>だよ。左にどんな名前がついていても、右の部分が同じなら同じ持ち主なんだ。</p></div>
+  <div class="key k2"><span class="tag">ドメイン</span><span class="term">インターネット上の住所の名前</span><span class="def"><code>https://login.<strong>donguri-bank.example</strong>/top</code> の持ち主は <code>donguri-bank.example</code>。<br><code>https://donguri-bank.example.<strong>secure-check.example</strong>/</code> の持ち主は <code>secure-check.example</code>。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">やってみよう:アドレス欄を読む</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>本物のどんぐり銀行はどれ？</h3><span>このページの中だけのまねです</span></div>
+    <p class="lab-intro">まもリス君がいつも使っている「どんぐり銀行」のドメインは <code>donguri-bank.example</code> です。下のアドレス欄で、パスワードを入れていいのはどれ？</p>
+    <div class="urlq" id="urlq"></div>
+    <p class="res" id="urlRes" aria-live="polite" hidden></p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>鍵マークは、本物にもにせものにも、ほとんどついてた。見るべきなのは、本当に右の部分だね。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そう。でも、毎回じっくり読むのは大変だし、見まちがいもする。だから、いちばん確実なのは<strong>メールやSMSのリンクから入らない</strong>こと。ブックマークや公式アプリから開こう。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">鍵マークとのつきあい方</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>実は最近のブラウザでは、アドレス欄の鍵マークを別のアイコンに変えたものもある。「鍵マーク = 安全なサイト」という思いこみが広がってしまったからなんだ。ちょっとさみしいけれど、正しい判断だと思うよ。</p></div>
+  <div class="todo">
+    <h3>パスワードやカード番号を入れる前に</h3>
+    <ul>
+      <li><code>https</code> でない(鍵マークがない・「保護されていない通信」と出る)ページには、入力しない</li>
+      <li>鍵マークがあっても、ドメインのいちばん右の部分が本物か確かめる</li>
+      <li>メールやSMSのリンクからではなく、ブックマークや公式アプリから開く</li>
+      <li>「この接続ではプライバシーが保護されません」などの警告画面が出たら、先に進まない</li>
+    </ul>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">守るもの</span><h3>通り道</h3><p>のぞき見と書きかえを防ぐ</p><p class="ex">共通鍵・公開鍵・証明書のチームプレー</p></div>
+    <div class="card c2"><span class="en">守らないもの</span><h3>相手の正体</h3><p>にせサイトにも鍵マークはつく</p><p class="ex">いい人かどうかは分からない</p></div>
+    <div class="card c3"><span class="en">見るところ</span><h3>ドメインの右はし</h3><p>持ち主はそこで決まる</p><p class="ex">いちばん確実なのはブックマーク</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>でも先生、「このドメインの持ち主のサーバー」って、だれが確かめてくれているの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>それが「証明書」の役目だ。フィッシーの「にせの南京錠作戦」をどう防ぐのかも、次の「電子署名と証明書」で、ついに明かそう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>鍵マークの秘密をバラされた…。こうなったら、もっとまぎらわしいドメインを考えるしかない…！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- address-bar quiz: read the domain, not the lock ---------- */
+(function(){
+  var REAL = "donguri-bank.example";
+  /* pre: text before the owner part, dom: owner part, post: path. ok: safe to type a password */
+  var URLS = [
+    {https:true,  pre:"login.",                 dom:"donguri-bank.example", post:"/top", ok:true,
+     why:"いちばん右が donguri-bank.example。左の login. は、同じ持ち主が作った入り口です。"},
+    {https:true,  pre:"",                       dom:"donguri-bnak.example", post:"/login", ok:false,
+     why:"bank が bnak になっています。鍵マークはついていても、持ち主はフィッシーです。"},
+    {https:true,  pre:"donguri-bank.example.",  dom:"secure-check.example", post:"/", ok:false,
+     why:"本物の名前が左に入っていても、持ち主はいちばん右の secure-check.example です。"},
+    {https:false, pre:"www.",                   dom:"donguri-bank.example", post:"/login", ok:false,
+     why:"ドメインは本物でも https ではありません。通り道が暗号化されていないので、パスワードは入れません。"},
+    {https:true,  pre:"",                       dom:"donguri-bank-support.example", post:"/", ok:false,
+     why:"「-support」がついただけで、まったく別のドメインです。持ち主は本物の銀行とはかぎりません。"},
+    {https:true,  pre:"www.",                   dom:"donguri-bank.example", post:"/login", ok:true,
+     why:"https で、いちばん右が donguri-bank.example。これは本物です。"}
+  ];
+  var LOCK = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="8" rx="2"/><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke-width="2"/></svg>';
+  var box = document.getElementById("urlq"), res = document.getElementById("urlRes");
+  var answered = 0, correct = 0;
+
+  URLS.forEach(function(u, i){
+    var item = document.createElement("div"); item.className = "uq";
+    var bar = document.createElement("div"); bar.className = "addr" + (u.https ? "" : " nolock");
+    var icon = document.createElement("span"); icon.className = "lk";
+    if (u.https) icon.innerHTML = LOCK; else icon.textContent = "保護されていない通信";
+    var url = document.createElement("span"); url.className = "url";
+    var dom = document.createElement("span"); dom.className = "dom"; dom.textContent = u.dom;
+    url.appendChild(document.createTextNode((u.https ? "https://" : "http://") + u.pre));
+    url.appendChild(dom);
+    url.appendChild(document.createTextNode(u.post));
+    bar.appendChild(icon); bar.appendChild(url);
+    var opts = document.createElement("div"); opts.className = "opts";
+    var fb = document.createElement("p"); fb.className = "fb"; fb.hidden = true; fb.setAttribute("aria-live", "polite");
+    [["入れてOK", true], ["入れない", false]].forEach(function(o){
+      var b = document.createElement("button"); b.type = "button"; b.className = "opt"; b.textContent = o[0];
+      b.addEventListener("click", function(){
+        var right = o[1] === u.ok;
+        opts.querySelectorAll("button").forEach(function(x){ x.disabled = true; });
+        b.classList.add(right ? "is-ok" : "is-ng");
+        bar.classList.add("shown");
+        fb.hidden = false; fb.className = "fb " + (right ? "ok" : "ng"); fb.textContent = "";
+        var h = document.createElement("b"); h.textContent = right ? "正解！ " : "おしい！ "; fb.appendChild(h);
+        fb.appendChild(document.createTextNode(u.why));
+        answered++; if (right) correct++;
+        if (answered === URLS.length){
+          res.hidden = false; res.className = "res " + (correct === URLS.length ? "ok" : "info"); res.textContent = "";
+          var t = document.createElement("b"); t.textContent = URLS.length + "問中 " + correct + "問 正解。 "; res.appendChild(t);
+          res.appendChild(document.createTextNode("鍵マークがついていたのは " + URLS.filter(function(x){ return x.https; }).length + "個。そのうち本物は " + URLS.filter(function(x){ return x.https && x.dom === REAL; }).length + "個だけでした。"));
+        }
+      });
+      opts.appendChild(b);
+    });
+    item.appendChild(bar); item.appendChild(opts); item.appendChild(fb);
+    box.appendChild(item);
+  });
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"アドレス欄に鍵マークがある。これで分かることは？", opts:["そのサイトは安全な会社のもの","通り道が暗号化されている","ウイルスがない"], a:1,
+     why:"鍵マークが守るのは通り道です。にせサイトも鍵マークを無料で手に入れられます。"},
+    {q:"https://donguri-bank.example.secure-check.example/ の持ち主のドメインは？", opts:["donguri-bank.example","secure-check.example"], a:1, mono:true,
+     why:"持ち主を決めるのは、最初の / の前の、いちばん右の部分です。"},
+    {q:"銀行のサイトを開くとき、いちばん確実な方法は？", opts:["メールのリンクから開く","鍵マークがあるか確かめてから、リンクを開く","ブックマークや公式アプリから開く"], a:2,
+     why:"にせのメールのリンクは、まぎらわしいドメインのにせサイトにつながっていることがあります。自分で用意した入り口から開くのが確実です。"}
+  ],
+  perfect: "鍵マークの本当の意味、ばっちりです！",
+  again: "上のアドレス欄で、ドメインのいちばん右をもう一度見てみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

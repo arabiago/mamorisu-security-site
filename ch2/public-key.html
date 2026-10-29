@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>共通鍵と公開鍵</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第2章 暗号</span>
+  <h1>共通鍵と公開鍵</h1>
+  <p class="sub">会ったことのない相手に、どうやって鍵を渡す？</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>先生、前のページの宿題だよ。暗号文を送る前に、友だちに鍵を渡さなきゃいけない。でも鍵をメッセージで送ったら、途中で見られちゃう。</p></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、鍵が通ったら、ありがたくコピーさせてもらうよ。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>これは「<strong>鍵をどう届けるか</strong>」という、暗号の大問題なんだ。今日は、その問題をあざやかに解いた方法を紹介しよう。わたしの得意分野だよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">共通鍵:かける鍵とあける鍵が同じ</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>前のページの暗号は、かける鍵とあける鍵が<strong>同じ</strong>だったね。これを<strong>共通鍵暗号</strong>という。計算が速くて、大きなデータもすぐに暗号化できる。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>弱点は2つ。ひとつは、まもリス君が心配したとおり、相手に鍵を<strong>こっそり届ける方法</strong>がいること。もうひとつは、相手ごとに別の鍵がいること。10人がおたがいにやりとりすると、鍵は45本。100人なら4950本にもなるんだ。</p></div>
+  <div class="key k1"><span class="tag">共通鍵暗号</span><span class="term">同じ鍵で、かけて、あける</span><span class="def">速いけれど、その鍵を相手に安全に届けるのがむずかしい。届ける途中で盗まれたら、全部読まれてしまう。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">公開鍵:開いた南京錠をくばる</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そこで南京錠の出番だ。友だちが、<strong>開いた南京錠</strong>をたくさん用意して、みんなにくばる。南京錠は、パチンと押せばだれでも閉められる。でも、あけられるのは、友だちが持っている<strong>鍵だけ</strong>なんだ。</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>そうか！ ぼくは手紙を箱に入れて、友だちの南京錠で閉めて送ればいい。とちゅうで南京錠を見られても、閉めることしかできないんだね。</p></div>
+  <div class="flow three">
+    <div class="gate g1"><span class="step">1. 友だちが南京錠をくばる</span><b>公開鍵</b><span class="ask">だれに見られてもいい</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g2"><span class="step">2. まもリス君が閉めて送る</span><b>暗号化</b><span class="ask">閉めるのはだれでもできる</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g1"><span class="step">3. 友だちが自分の鍵であける</span><b>秘密鍵</b><span class="ask">あけられるのは持ち主だけ</span></div>
+  </div>
+  <div class="key k2"><span class="tag">公開鍵暗号</span><span class="term">閉める鍵と、あける鍵が別々</span><span class="def">閉める側の<strong>公開鍵</strong>は、だれに配ってもいい。あける側の<strong>秘密鍵</strong>は、持ち主だけがひみつにしておく。だから、鍵をこっそり届ける必要がない。</span></div>
+  <div class="key k3"><span class="tag">パスキーとの関係</span><span class="term">「はんこと印影」も同じペア</span><span class="def">パスキーのページの「はんこ(秘密鍵)」と「印影(公開鍵)」は、この鍵のペアの別の使い方。くわしくは「電子署名と証明書」で。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">やってみよう:南京錠で送る</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>友だちの南京錠でひみつを送ろう</h3><span>計算はこのページの中だけで行います</span></div>
+    <p class="lab-intro">友だちは、公開鍵と秘密鍵のペアを作って、公開鍵(南京錠)をみんなにくばりました。フィッシーも、その南京錠を手に入れています。</p>
+    <div class="keys">
+      <div class="keybox"><b>友だちの南京錠(公開鍵)</b><span id="pubFp">鍵のペアを作っています…</span></div>
+      <div class="keybox"><b>友だちの鍵(秘密鍵)</b><span>友だちのスマホの中だけ。だれにも渡さない</span></div>
+    </div>
+    <div>
+      <label for="pkPlain">ひみつの文(60文字まで)</label>
+      <input class="pw" id="pkPlain" type="text" maxlength="60" value="あしたの放課後、クリの木の下で会おう" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="btns"><button class="btn" type="button" id="pkLock" disabled>南京錠で閉めて送る</button></div>
+    <div>
+      <label for="pkOut">フィッシーが途中で見たもの</label>
+      <output class="cx-out hex" id="pkOut">(まだ送っていません)</output>
+    </div>
+    <div class="btns">
+      <button class="btn deny" type="button" id="tryPub" disabled>フィッシー:南京錠であけてみる</button>
+      <button class="btn deny" type="button" id="tryFishy" disabled>フィッシー:自分の鍵であけてみる</button>
+      <button class="btn ghost" type="button" id="tryFriend" disabled>友だち:秘密鍵であける</button>
+    </div>
+    <p class="res" id="pkRes" aria-live="polite" hidden></p>
+    <p class="assume">実際の公開鍵暗号(RSA、鍵の長さ2048ビット)を使って、このページの中で計算しています。</p>
+  </div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>南京錠も、閉めた箱も、ちゃんと手に入れたのに…あけられない！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>公開鍵から秘密鍵を計算で求めるのは、とてつもなくむずかしい。だから、公開鍵は堂々とくばっていいんだよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">本当は、2つを組み合わせて使う</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>公開鍵のほうが便利そう。もう共通鍵はいらないの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>公開鍵暗号は計算が重くて、大きなデータには向かないんだ。そこで、<strong>公開鍵で共通鍵を届けて、中身は速い共通鍵で暗号化</strong>する。いいとこ取りだね。鍵マークのついたWebサイトとのやりとりも、この組み合わせで守られているよ。</p></div>
+  <div class="tablewrap">
+    <table class="vs">
+      <thead><tr><th scope="col">くらべること</th><th scope="col">共通鍵暗号</th><th scope="col">公開鍵暗号</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">かける鍵とあける鍵</th><td><span class="m p">同じ鍵</span></td><td><span class="m y">別々の鍵</span></td></tr>
+        <tr><th scope="row">鍵の届け方</th><td><span class="m n">✕ こっそり届ける必要がある</span></td><td><span class="m y">○ 公開鍵はくばってよい</span></td></tr>
+        <tr><th scope="row">100人でやりとり</th><td><span class="m n">✕ 4950本</span></td><td><span class="m y">○ 100組</span></td></tr>
+        <tr><th scope="row">計算の速さ</th><td><span class="m y">○ 速い</span></td><td><span class="m p">△ 重い</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ひらめいた！ 友だちのふりをして、<strong>ぼくの南京錠</strong>をくばればいい。まもリスがそれで閉めたら、ぼくがあけられる！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>…するどいね。公開鍵暗号のいちばんの弱点は、「<strong>その南京錠は、本当に友だちのもの？</strong>」という点なんだ。それを確かめるしくみが「証明書」。この章の最後で見ていこう。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">共通鍵</span><h3>同じ鍵でかけてあける</h3><p>速いけれど、鍵を届けるのが大変</p><p class="ex">相手ごとに別の鍵がいる</p></div>
+    <div class="card c2"><span class="en">公開鍵</span><h3>開いた南京錠をくばる</h3><p>閉めるのはだれでも、あけるのは持ち主だけ</p><p class="ex">秘密鍵はぜったいに渡さない</p></div>
+    <div class="card c3"><span class="en">組み合わせ</span><h3>いいとこ取り</h3><p>公開鍵で共通鍵を届ける</p><p class="ex">南京錠が本物かは、証明書で確かめる</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>会ったことのない相手とも、ひみつのやりとりができるなんて、南京錠ってすごいね！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>ふふ、照れるなあ。次は、鍵を使わない不思議な計算、データの指紋「ハッシュ」の話をしよう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>にせの南京錠作戦、まだあきらめてないからな…！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- padlock demo: RSA-OAEP 2048 with Web Crypto, in this page only ---------- */
+(function(){
+  var subtle = window.crypto && crypto.subtle;
+  var ALG = {name:"RSA-OAEP", modulusLength:2048, publicExponent:new Uint8Array([1,0,1]), hash:"SHA-256"};
+  var MAX_BYTES = 190; /* RSA-OAEP 2048 / SHA-256 */
+  var input = document.getElementById("pkPlain"), fp = document.getElementById("pubFp"), out = document.getElementById("pkOut"), res = document.getElementById("pkRes");
+  var bLock = document.getElementById("pkLock"), bPub = document.getElementById("tryPub"), bFishy = document.getElementById("tryFishy"), bFriend = document.getElementById("tryFriend");
+  var friend = null, fishy = null, sent = null;
+  function hex(buf, n){ var a = new Uint8Array(buf), s = ""; for (var i = 0; i < Math.min(a.length, n || a.length); i++) s += a[i].toString(16).padStart(2,"0"); return s; }
+  function result(kind, head, text){
+    res.hidden = false; res.className = "res " + kind; res.textContent = "";
+    var b = document.createElement("b"); b.textContent = head; res.appendChild(b);
+    res.appendChild(document.createTextNode(text));
+  }
+  function setOpen(on){ bPub.disabled = !on; bFishy.disabled = !on; bFriend.disabled = !on; }
+  if (!subtle){ fp.textContent = "このブラウザでは、この計算を使えません"; return; }
+
+  Promise.all([subtle.generateKey(ALG, true, ["encrypt","decrypt"]), subtle.generateKey(ALG, true, ["encrypt","decrypt"])]).then(function(ks){
+    friend = ks[0]; fishy = ks[1];
+    return subtle.exportKey("spki", friend.publicKey).then(function(spki){ return subtle.digest("SHA-256", spki); });
+  }).then(function(d){
+    fp.textContent = ""; fp.appendChild(document.createTextNode("南京錠の特徴 "));
+    var c = document.createElement("code"); c.textContent = hex(d, 8).match(/.{4}/g).join(" "); fp.appendChild(c);
+    fp.appendChild(document.createTextNode(" (フィッシーも持っている)"));
+    bLock.disabled = false;
+  }).catch(function(){ fp.textContent = "このブラウザでは、この計算を使えません"; });
+
+  bLock.addEventListener("click", function(){
+    var data = new TextEncoder().encode(input.value);
+    if (!input.value){ result("info", "", "ひみつの文を入れてね。"); return; }
+    if (data.length > MAX_BYTES){ result("info", "長すぎます。 ", "南京錠1つで閉められる量には限りがあります。文を短くしてね。"); return; }
+    subtle.encrypt({name:"RSA-OAEP"}, friend.publicKey, data).then(function(ct){
+      sent = ct;
+      out.textContent = hex(ct, 48) + "…(全部で" + ct.byteLength + "バイト)";
+      setOpen(true);
+      result("info", "送りました。 ", "フィッシーが手に入れたのは、この意味のない数字の列と、友だちの南京錠です。");
+    });
+  });
+  bPub.addEventListener("click", function(){
+    if (!sent) return;
+    /* a public key has no "decrypt" use — Web Crypto refuses, just like a padlock can't unlock itself */
+    subtle.decrypt({name:"RSA-OAEP"}, friend.publicKey, sent).then(function(){
+      result("ng", "あいてしまった？ ", "");
+    }, function(){
+      result("ok", "あけられない！ ", "南京錠(公開鍵)は、閉めることしかできません。");
+    });
+  });
+  bFishy.addEventListener("click", function(){
+    if (!sent) return;
+    subtle.decrypt({name:"RSA-OAEP"}, fishy.privateKey, sent).then(function(){
+      result("ng", "あいてしまった？ ", "");
+    }, function(){
+      result("ok", "あけられない！ ", "フィッシーの鍵は、友だちの南京錠とペアではありません。");
+    });
+  });
+  bFriend.addEventListener("click", function(){
+    if (!sent) return;
+    subtle.decrypt({name:"RSA-OAEP"}, friend.privateKey, sent).then(function(pt){
+      result("ok", "友だちがあけた: ", "「" + new TextDecoder().decode(pt) + "」");
+    }, function(){ result("ng", "あけられませんでした。 ", ""); });
+  });
+  input.addEventListener("input", function(){
+    sent = null; setOpen(false); res.hidden = true;
+    out.textContent = "(文が変わりました。もう一度送ってください)";
+  });
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"共通鍵暗号のいちばんの悩みはどれ？", opts:["計算がとても遅い","相手に鍵を安全に届けるのがむずかしい","暗号文が長くなりすぎる"], a:1,
+     why:"共通鍵暗号は速いのですが、同じ鍵を相手に届ける途中で盗まれると、全部読まれてしまいます。"},
+    {q:"公開鍵暗号で、だれに見せてもよいのはどっち？", opts:["公開鍵(南京錠)","秘密鍵(あける鍵)"], a:0,
+     why:"公開鍵は閉めることしかできないので、くばって大丈夫。秘密鍵は持ち主だけがひみつにしておきます。"},
+    {q:"フィッシーが「友だちのふり」をして自分の南京錠をくばった。何で防ぐ？", opts:["共通鍵を使う","南京錠が本物か、証明書で確かめる","暗号文を長くする"], a:1,
+     why:"公開鍵が本当にその人のものかを確かめるのが証明書です。この章の「電子署名と証明書」でくわしく学びます。"}
+  ],
+  perfect: "南京錠の使い方、ばっちりです！",
+  again: "上のコーナーで、だれの鍵ならあけられるか、もう一度ためしてみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

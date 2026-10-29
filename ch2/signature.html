@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>電子署名と証明書</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第2章 暗号</span>
+  <h1>電子署名と証明書</h1>
+  <p class="sub">その南京錠、本当に本人のもの？</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>待ちに待った「にせの南京錠作戦」だ！ 友だちのふりをして、ぼくの南京錠をくばってやる。まもリスがそれで閉めたら、ぼくがあけて読み放題さ！</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>先生、南京錠を見ただけじゃ、だれのものか分からないよ。どうすればいいの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>答えは、パスキーのページで使った「<strong>はんこ</strong>」にある。今日は、はんこの正式な名前「<strong>電子署名</strong>」と、それを使った「<strong>証明書</strong>」の話をしよう。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">電子署名:秘密鍵ではんこを押す</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>公開鍵と秘密鍵のペアは、逆向きにも使える。<strong>秘密鍵ではんこを押して</strong>、<strong>公開鍵(印影)で確かめる</strong>んだ。はんこを押せるのは秘密鍵を持つ本人だけ。でも、確かめるのは印影を持っているだれでもできる。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>しかも、はんこは文章そのものではなく、文章の<strong>指紋(ハッシュ)</strong>に押す。だから、文が1文字でも書きかえられたら、指紋が変わって、はんこが合わなくなるんだ。</p></div>
+  <div class="key k1"><span class="tag">電子署名</span><span class="term">データに押す、デジタルのはんこ</span><span class="def">「<strong>だれが</strong>書いたか」と「<strong>書きかえられていないか</strong>」の2つを、同時に確かめられる。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">やってみよう:はんこを押した手紙</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>署名つきの手紙を、フィッシーは書きかえられる？</h3><span>計算はこのページの中だけで行います</span></div>
+    <div class="keys">
+      <div class="keybox"><b>友だちのはんこ(秘密鍵)</b><span>友だちだけが持っている</span></div>
+      <div class="keybox"><b>友だちの印影(公開鍵)</b><span id="sigFp">準備中…</span></div>
+    </div>
+    <div>
+      <label for="sigMsg">友だちが書いた手紙</label>
+      <input class="pw" id="sigMsg" type="text" value="あしたの放課後、クリの木の下で会おう" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="btns"><button class="btn" type="button" id="sigSign" disabled>はんこを押して送る</button></div>
+    <div>
+      <label for="sigGot">まもリス君に届いた手紙(フィッシーが途中で書きかえられます)</label>
+      <input class="pw" id="sigGot" type="text" value="" autocomplete="off" spellcheck="false" disabled>
+    </div>
+    <div>
+      <label for="sigOut">手紙についていた電子署名</label>
+      <output class="cx-out hex" id="sigOut">(まだ送っていません)</output>
+    </div>
+    <div class="btns">
+      <button class="btn deny" type="button" id="sigTamper" disabled>フィッシー:時間を書きかえる</button>
+      <button class="btn deny" type="button" id="sigForge" disabled>フィッシー:自分のはんこで押しなおす</button>
+      <button class="btn ghost" type="button" id="sigCheck" disabled>まもリス君:印影で確かめる</button>
+    </div>
+    <p class="res" id="sigRes" aria-live="polite" hidden></p>
+    <p class="assume">実際の電子署名(ECDSA P-256、指紋は SHA-256)を、このページの中で計算しています。</p>
+  </div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>書きかえるとバレる。自分のはんこで押しなおしても、友だちの印影と合わない…！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">証明書:南京錠に押された、えらい人のはんこ</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>でも、最初に受け取る印影がフィッシーのものだったら、同じことにならない？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そのとおり。そこで登場するのが<strong>認証局</strong>。みんなが信頼している「えらい人」が、「この南京錠(公開鍵)は、たしかに <code>donguri-bank.example</code> のものです」という書類を作って、自分のはんこを押す。これが<strong>証明書</strong>だよ。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>大人が家を買うときに使う「印鑑証明書」と同じ考え方だ。役所が「このはんこは、たしかにこの人のものです」と証明してくれるんだよ。</p></div>
+  <div class="flow three">
+    <div class="gate g1"><span class="step">1. サイトが申しこむ</span><b>この南京錠はわたしのもの</b><span class="ask">ドメインの持ち主か調べられる</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g2"><span class="step">2. 認証局がはんこを押す</span><b>証明書</b><span class="ask">「たしかに、このドメインのもの」</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g1"><span class="step">3. ブラウザが確かめる</span><b>認証局の印影</b><span class="ask">ブラウザに最初から入っている</span></div>
+  </div>
+  <div class="key k2"><span class="tag">証明書と認証局</span><span class="term">公開鍵の「持ち主」を保証するしくみ</span><span class="def">証明書は、公開鍵とドメインの組み合わせに、<strong>認証局</strong>が電子署名したもの。ブラウザやスマホには、信頼できる認証局の印影(公開鍵)のリストが、最初から入っている。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">やってみよう:ブラウザになって確かめる</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>この証明書、信じていい？</h3><span>このページの中だけで動くまねです</span></div>
+    <p class="lab-intro">きみはブラウザです。信頼している認証局は「<b>どんぐり認証局</b>」だけ。サイトから届いた証明書を、認証局の印影で確かめよう。</p>
+    <div class="certs" id="certs"><p class="note">証明書を準備しています…</p></div>
+    <p class="assume">証明書の中身を、どんぐり認証局の公開鍵で、実際に署名の計算をして確かめています。本物の証明書には、有効期限などの情報も入っています。</p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>4枚目は、ちゃんと信じていい証明書なのに、アドレスがにせものだ！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そう。認証局が保証するのは「このドメインの持ち主の南京錠だ」ということだけ。<code>donguri-bnak.example</code> の持ち主はフィッシーだから、フィッシーも正しい証明書をもらえる。前のページで、鍵マークの次に<strong>ドメイン</strong>を見ようと言ったのは、このためなんだ。</p></div>
+  <div class="todo">
+    <h3>証明書の警告が出たら</h3>
+    <ul>
+      <li>「この接続ではプライバシーが保護されません」などの画面が出たら、先に進まない</li>
+      <li>特に、公衆Wi-Fiでこの警告が出たら、だれかが途中に割りこんでいるかもしれない</li>
+      <li>「証明書をインストールしてください」と、知らない相手に言われても入れない(信頼リストにフィッシーを加えることになる)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">電子署名</span><h3>デジタルのはんこ</h3><p>秘密鍵で押して、公開鍵で確かめる</p><p class="ex">だれが書いたか、書きかえられていないか</p></div>
+    <div class="card c2"><span class="en">証明書</span><h3>南京錠の持ち主を保証</h3><p>認証局が、公開鍵とドメインにはんこ</p><p class="ex">ブラウザは認証局の印影を知っている</p></div>
+    <div class="card c3"><span class="en">気をつけること</span><h3>警告は無視しない</h3><p>にせの証明書は、警告で分かる</p><p class="ex">にせドメインの正しい証明書もある</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>暗号化、公開鍵、ハッシュ、署名、証明書。全部つながってたんだね！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>よくがんばったね。暗号は、仕組みとしてはとても強い。だから悪い人は、暗号ではなく<strong>人をだます</strong>ほうをねらってくる。次の第3章では、フィッシーの本業「だましの手口」を見ていこう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>にせの南京錠作戦、大失敗…。でも次の章は、ぼくの得意分野だからね！ ククク…。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- signatures + certificates: ECDSA P-256 / SHA-256 with Web Crypto, in this page only ---------- */
+(function(){
+  var subtle = window.crypto && crypto.subtle;
+  var GEN = {name:"ECDSA", namedCurve:"P-256"}, SIG = {name:"ECDSA", hash:"SHA-256"};
+  function hex(buf, n){ var a = new Uint8Array(buf), s = ""; for (var i = 0; i < Math.min(a.length, n || a.length); i++) s += a[i].toString(16).padStart(2,"0"); return s; }
+  function enc(t){ return new TextEncoder().encode(t); }
+  function gen(){ return subtle.generateKey(GEN, true, ["sign","verify"]); }
+  function fpOf(pub){ return subtle.exportKey("raw", pub).then(function(r){ return subtle.digest("SHA-256", r); }).then(function(d){ return hex(d, 8).match(/.{4}/g).join(" "); }); }
+  function result(el, kind, head, text){
+    el.hidden = false; el.className = "res " + kind; el.textContent = "";
+    var b = document.createElement("b"); b.textContent = head; el.appendChild(b);
+    el.appendChild(document.createTextNode(text));
+  }
+  var sigRes = document.getElementById("sigRes"), certBox = document.getElementById("certs");
+  if (!subtle){
+    document.getElementById("sigFp").textContent = "このブラウザでは、この計算を使えません";
+    certBox.textContent = "このブラウザでは、この計算を使えません";
+    return;
+  }
+
+  /* --- lab 1: signed letter --- */
+  var msg = document.getElementById("sigMsg"), got = document.getElementById("sigGot"), out = document.getElementById("sigOut");
+  var bSign = document.getElementById("sigSign"), bTamper = document.getElementById("sigTamper"), bForge = document.getElementById("sigForge"), bCheck = document.getElementById("sigCheck");
+  var friend = null, fishy = null, sig = null;
+  function showSig(s, who){ sig = s; out.textContent = hex(s, 32) + "…(" + who + "のはんこ)"; }
+  function setSent(on){ got.disabled = !on; bTamper.disabled = !on; bForge.disabled = !on; bCheck.disabled = !on; }
+
+  Promise.all([gen(), gen()]).then(function(ks){
+    friend = ks[0]; fishy = ks[1];
+    return fpOf(friend.publicKey);
+  }).then(function(fp){
+    var el = document.getElementById("sigFp"); el.textContent = "";
+    el.appendChild(document.createTextNode("印影の特徴 "));
+    var c = document.createElement("code"); c.textContent = fp; el.appendChild(c);
+    el.appendChild(document.createTextNode(" (まもリス君は、前に友だちから直接もらった)"));
+    bSign.disabled = false;
+  });
+
+  bSign.addEventListener("click", function(){
+    subtle.sign(SIG, friend.privateKey, enc(msg.value)).then(function(s){
+      showSig(s, "友だち"); got.value = msg.value; setSent(true);
+      result(sigRes, "info", "送りました。 ", "手紙と電子署名が、いっしょにまもリス君に届きます。");
+    });
+  });
+  bTamper.addEventListener("click", function(){
+    got.value = got.value.indexOf("放課後") >= 0 ? got.value.replace("放課後", "夜中の2時") : got.value + "(夜中の2時に変更)";
+    result(sigRes, "info", "フィッシーが書きかえた。 ", "電子署名はそのまま。まもリス君は、確かめてみよう。");
+  });
+  bForge.addEventListener("click", function(){
+    subtle.sign(SIG, fishy.privateKey, enc(got.value)).then(function(s){
+      showSig(s, "フィッシー");
+      result(sigRes, "info", "フィッシーが押しなおした。 ", "いまの文に、フィッシーのはんこを押しなおしました。");
+    });
+  });
+  bCheck.addEventListener("click", function(){
+    subtle.verify(SIG, friend.publicKey, sig, enc(got.value)).then(function(ok){
+      if (ok) result(sigRes, "ok", "本物の手紙！ ", "友だちの印影とぴったり合いました。友だちが書いて、途中で書きかえられていません。");
+      else result(sigRes, "ng", "あやしい手紙！ ", "友だちの印影と合いません。書きかえられたか、友だちではないだれかのはんこです。");
+    });
+  });
+  got.addEventListener("input", function(){ sigRes.hidden = true; });
+  msg.addEventListener("input", function(){
+    sig = null; got.value = ""; setSent(false); sigRes.hidden = true;
+    out.textContent = "(文が変わりました。もう一度送ってください)";
+  });
+
+  /* --- lab 2: certificates checked against the browser's trusted list --- */
+  var CA_NAME = "どんぐり認証局";
+  function body(c){ return "subject=" + c.subject + "\nkey=" + c.keyFp + "\nissuer=" + c.issuer; }
+  Promise.all([gen(), gen(), gen(), gen()]).then(function(ks){
+    var ca = ks[0], fishyCa = ks[1], bank = ks[2], fishySrv = ks[3];
+    var TRUSTED = {}; TRUSTED[CA_NAME] = ca.publicKey;
+    return Promise.all([fpOf(bank.publicKey), fpOf(fishySrv.publicKey)]).then(function(fps){
+      var CASES = [
+        {addr:"donguri-bank.example", note:"いつもの銀行にアクセスした", subject:"donguri-bank.example", keyFp:fps[0], issuer:CA_NAME, signer:ca.privateKey},
+        {addr:"donguri-bank.example", note:"公衆Wi-Fiで、フィッシーが途中に割りこんだ", subject:"donguri-bank.example", keyFp:fps[1], issuer:CA_NAME, signer:fishyCa.privateKey},
+        {addr:"donguri-bank.example", note:"フィッシーが自分で作った認証局を名乗った", subject:"donguri-bank.example", keyFp:fps[1], issuer:"フィッシー認証局", signer:fishyCa.privateKey},
+        {addr:"donguri-bnak.example", note:"メールのリンクから開いた", subject:"donguri-bnak.example", keyFp:fps[1], issuer:CA_NAME, signer:ca.privateKey}
+      ];
+      return Promise.all(CASES.map(function(c){ return subtle.sign(SIG, c.signer, enc(body(c))).then(function(s){ c.sig = s; return c; }); }));
+    }).then(function(cases){ render(cases, TRUSTED); });
+  });
+
+  function row(dl, k, v, mono){
+    var dt = document.createElement("dt"); dt.textContent = k;
+    var dd = document.createElement("dd"); dd.textContent = v; if (mono) dd.className = "mono";
+    dl.appendChild(dt); dl.appendChild(dd);
+  }
+  function render(cases, TRUSTED){
+    certBox.textContent = "";
+    cases.forEach(function(c, i){
+      var card = document.createElement("div"); card.className = "cert";
+      var h = document.createElement("b"); h.className = "cert-head"; h.textContent = (i + 1) + "枚目:" + c.note; card.appendChild(h);
+      var dl = document.createElement("dl");
+      row(dl, "アクセスしたアドレス", "https://" + c.addr + "/", true);
+      row(dl, "発行先(ドメイン)", c.subject, true);
+      row(dl, "南京錠(公開鍵)", c.keyFp, true);
+      row(dl, "発行者(認証局)", c.issuer);
+      row(dl, "認証局のはんこ", hex(c.sig, 12) + "…", true);
+      card.appendChild(dl);
+      var btn = document.createElement("button"); btn.type = "button"; btn.className = "btn ghost"; btn.textContent = "ブラウザとして確かめる";
+      var res = document.createElement("p"); res.className = "res"; res.hidden = true; res.setAttribute("aria-live", "polite");
+      btn.addEventListener("click", function(){
+        var pub = TRUSTED[c.issuer];
+        if (!pub){ result(res, "ng", "警告画面を出す！ ", "「" + c.issuer + "」は、信頼している認証局のリストにありません。"); return; }
+        subtle.verify(SIG, pub, c.sig, enc(body(c))).then(function(ok){
+          if (!ok) result(res, "ng", "警告画面を出す！ ", "「" + c.issuer + "」と名乗っているけれど、はんこが" + CA_NAME + "の印影と合いません。");
+          else if (c.subject !== c.addr) result(res, "ng", "警告画面を出す！ ", "証明書のドメインと、アクセスしたアドレスがちがいます。");
+          else if (c.addr !== "donguri-bank.example") result(res, "info", "鍵マークを出す。でも…", "証明書は正しく、" + c.addr + " の持ち主のものです。ただ、それは本物の銀行のドメインではありません！");
+          else result(res, "ok", "鍵マークを出す。 ", CA_NAME + "の印影と合い、ドメインも一致しました。");
+        });
+      });
+      card.appendChild(btn); card.appendChild(res);
+      certBox.appendChild(card);
+    });
+  }
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"電子署名のはんこを押すのに使うのはどっち？", opts:["秘密鍵","公開鍵"], a:0,
+     why:"はんこ(署名)は本人だけが持つ秘密鍵で押し、だれでも持てる公開鍵(印影)で確かめます。"},
+    {q:"署名つきの手紙を、フィッシーが1文字だけ書きかえた。どうなる？", opts:["1文字なら気づかれない","印影で確かめると合わなくなる","署名も自動で書きかわる"], a:1,
+     why:"はんこは文の指紋(ハッシュ)に押されています。1文字でも変わると指紋が変わり、はんこが合わなくなります。"},
+    {q:"証明書が保証してくれることは？", opts:["その公開鍵が、そのドメインの持ち主のものであること","そのサイトの運営者がいい人であること","そのドメインが本物の会社のものであること"], a:0,
+     why:"証明書は「公開鍵とドメインの組み合わせ」を保証します。にせのドメインにも、正しい証明書は発行されます。"}
+  ],
+  perfect: "暗号の章、完全クリアです！",
+  again: "上のコーナーで、はんこと証明書をもう一度ためしてみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

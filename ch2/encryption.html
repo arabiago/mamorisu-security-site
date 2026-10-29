@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>暗号化ってなに？</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第2章 暗号</span>
+  <h1>暗号化ってなに？</h1>
+  <p class="sub">途中で見られても、読めなければだいじょうぶ</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>ドングリを埋めた場所を、友だちにメッセージで送りたいんだ。でも、だれかに途中で見られたらどうしよう…。</p></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、ネットの通り道で待ちぶせして、のぞいてやる！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>ネットのやりとりは、たくさんの機械を通って相手に届く。はがきのように、途中で見られる可能性があると考えておこう。だからこそ、<strong>見られても読めないようにする</strong>んだ。それが<strong>暗号化</strong>だよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">鍵をかけて、鍵であける</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>暗号化は、手紙を<strong>鍵のかかる箱</strong>に入れるようなもの。決まった計算で文章をぐちゃぐちゃな文字の列に変える。その計算に使う、ひみつの情報が<strong>鍵</strong>だ。同じ鍵を持っている人だけが、元の文章にもどせるんだよ。</p></div>
+  <div class="flow three">
+    <div class="gate g1"><span class="step">ふつうの文章(平文)</span><b>どんぐりは…</b><span class="ask">だれでも読める</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g2"><span class="step">鍵で暗号化した文(暗号文)</span><b>ぬぃころひ…</b><span class="ask">鍵がないと読めない</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g1"><span class="step">鍵で元にもどす(復号)</span><b>どんぐりは…</b><span class="ask">鍵を持つ人だけ読める</span></div>
+  </div>
+  <div class="key k1"><span class="tag">暗号化と復号</span><span class="term">文章をかくすことと、元にもどすこと</span><span class="def">読める文章を、読めない文字の列に変えるのが<strong>暗号化</strong>。元の文章にもどすのが<strong>復号</strong>(ふくごう)。</span></div>
+  <div class="key k2"><span class="tag">鍵</span><span class="term">暗号の計算に使う、ひみつの情報</span><span class="def">暗号の計算方法は、世界中に公開されていることが多い。それでも安全なのは、<strong>鍵がひみつ</strong>だから。守るべきなのは、計算方法ではなく鍵なんだ。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">やってみよう:ずらし暗号</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>まずは大昔からある、かんたんな暗号を作ってみよう。ひらがなを、決めた数だけ後ろにずらすんだ。「あ」を2つずらすと「い」(あいだに小さい「ぃ」があるからね)。<strong>ずらす数が鍵</strong>だよ。</p></div>
+  <div class="lab">
+    <div class="lab-head"><h3>ずらし暗号を作って、破ってみよう</h3><span>入力した文字は、このページの外に送られません</span></div>
+    <div>
+      <label for="plain">ひみつの文(ひらがなだけが暗号になります)</label>
+      <input class="pw" id="plain" type="text" value="どんぐりはおおきなくりのきのしたにうめたよ" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="bio-th">
+      <label for="shift">鍵(ずらす数)</label>
+      <span class="bio-th-val"><b id="shiftVal">3</b> 文字</span>
+      <input id="shift" type="range" min="1" max="82" value="3">
+      <span class="bio-th-ends"><span>1</span><span>82</span></span>
+    </div>
+    <div>
+      <label for="cipher">フィッシーに見える暗号文</label>
+      <output class="cx-out" id="cipher" for="plain shift"></output>
+    </div>
+    <div class="btns"><button class="btn deny" type="button" id="crack">フィッシーが全部の鍵をためす</button></div>
+    <ol class="cx-tries" id="tries" hidden></ol>
+    <p class="res" id="crackRes" aria-live="polite" hidden></p>
+  </div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>鍵なんて知らなくても、82通り全部ためせば、読める文が1つだけ出てくる。楽勝だね！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そう、ずらし暗号の弱点は<strong>鍵の種類が少なすぎる</strong>こと。全部の鍵をためす「総当たり」で、すぐに破られてしまうんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">本物の暗号は、鍵の数がけたちがい</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>じゃあ、いまのスマホやパソコンは、どんな暗号を使っているの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>たとえば<strong>AES</strong>(エーイーエス)という暗号が、世界中で使われている。鍵の種類は「1のあとに0が77個」ほど。こんどはこれを、このページの中で本当に計算してみよう。</p></div>
+  <div class="lab">
+    <div class="lab-head"><h3>本物の暗号(AES)でかけてみよう</h3><span>計算はこのページの中だけで行います</span></div>
+    <div>
+      <label for="aesPlain">ひみつの文(何語でもOK)</label>
+      <input class="pw" id="aesPlain" type="text" value="どんぐりは大きなクリの木の下に埋めたよ" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="keys">
+      <div class="keybox"><b>まもリス君と友だちの鍵</b><span id="aesKey">準備中…</span></div>
+      <div class="keybox"><b>鍵の種類</b><span>約 1.2 × 10<sup>77</sup> 通り(1のあとに0が77個)</span></div>
+    </div>
+    <div class="btns">
+      <button class="btn" type="button" id="aesEnc">暗号化する</button>
+      <button class="btn ghost" type="button" id="aesDec" disabled>正しい鍵でひらく</button>
+      <button class="btn deny" type="button" id="aesBad" disabled>フィッシーの鍵でひらく</button>
+    </div>
+    <div>
+      <label for="aesOut">フィッシーに見える暗号文</label>
+      <output class="cx-out hex" id="aesOut">(まだ暗号化していません)</output>
+    </div>
+    <p class="res" id="aesRes" aria-live="polite" hidden></p>
+    <p class="assume">鍵の長さは256ビット(AES-256)。1秒に1兆通りためせるコンピュータでも、全部ためすには宇宙の年齢(約138億年)の10<sup>47</sup>倍以上かかります。</p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>同じ文なのに、「暗号化する」を押すたびに暗号文が変わるよ！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>よく見ているね。毎回ちがう「味つけ」の数を混ぜているから、同じ文を2回送っても、フィッシーには同じ文だと分からない。しかも、鍵が少しでもちがえば、ひらけないんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">暗号化はどこで使われている？</h2></div>
+  <div class="ways">
+    <div class="way"><b>Webサイト</b><span>アドレスが <code>https</code> で始まるページとのやりとり</span></div>
+    <div class="way"><b>スマホの中身</b><span>画面ロックをかけると、保存された写真やデータも守られる</span></div>
+    <div class="way"><b>Wi-Fi</b><span>パスワードのあるWi-Fiは、電波のやりとりを暗号化</span></div>
+  </div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>読めないなら、ぼくのにせサイトに直接送ってもらえばいいのさ。そこで暗号をといて、ゆっくり読むよ。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そこが大事なところ。暗号化が守るのは<strong>通り道</strong>だけ。送り先がにせものなら、暗号は相手のところでちゃんとひらかれて、読まれてしまうんだ。</p></div>
+  <div class="todo">
+    <h3>暗号化を味方にするコツ</h3>
+    <ul>
+      <li>スマホやパソコンに画面ロックをかける(中のデータの暗号化とセットで働く)</li>
+      <li>パスワードを入れる前に、アドレスが <code>https</code> で始まるか見る</li>
+      <li>ただし <code>https</code> は「通り道が暗号化されている」という意味。「安全なサイト」という保証ではない</li>
+      <li>鍵になるもの(パスワードや画面ロックの番号)を、人に教えない</li>
+    </ul>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">しくみ</span><h3>鍵でかけて鍵であける</h3><p>読めない文字の列に変える</p><p class="ex">見られても、読まれなければ安心</p></div>
+    <div class="card c2"><span class="en">強さ</span><h3>鍵の数がものをいう</h3><p>少ないと総当たりで破られる</p><p class="ex">本物の暗号は、ためしきれない数</p></div>
+    <div class="card c3"><span class="en">気をつけること</span><h3>守るのは通り道</h3><p>送り先がにせものなら読まれる</p><p class="ex">鍵マークは「本物」の印ではない</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>でも先生、友だちにはどうやって鍵を渡せばいいの？ 鍵をメッセージで送ったら、それを見られちゃうよ。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>するどい！ それこそが暗号の大問題なんだ。次のページ「共通鍵と公開鍵」で、そのうまい解決法を見ていこう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>10の77乗通り…？ 全部ためすまで、ぼく、何回生まれ変わればいいんだ…。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- shift cipher over hiragana (U+3041 ぁ … U+3093 ん) + brute force ---------- */
+(function(){
+  var BASE = 0x3041, N = 0x3093 - 0x3041 + 1; /* 83 letters → keys 1..82 */
+  var plain = document.getElementById("plain"), shift = document.getElementById("shift"), shiftVal = document.getElementById("shiftVal");
+  var cipher = document.getElementById("cipher"), tries = document.getElementById("tries"), res = document.getElementById("crackRes");
+  function rot(s, k){
+    var out = "";
+    for (var i = 0; i < s.length; i++){
+      var c = s.charCodeAt(i) - BASE;
+      out += (c >= 0 && c < N) ? String.fromCharCode(BASE + ((c + k) % N + N) % N) : s[i];
+    }
+    return out;
+  }
+  function update(){
+    shiftVal.textContent = shift.value;
+    cipher.textContent = rot(plain.value, +shift.value);
+    tries.hidden = true; res.hidden = true;
+  }
+  document.getElementById("crack").addEventListener("click", function(){
+    var ct = cipher.textContent, key = +shift.value, hit = null;
+    var t0 = performance.now();
+    var lines = [];
+    for (var k = 1; k < N; k++) lines.push(rot(ct, -k));
+    var ms = performance.now() - t0;
+    tries.textContent = "";
+    lines.forEach(function(text, i){
+      var li = document.createElement("li");
+      var b = document.createElement("span"); b.className = "k"; b.textContent = "鍵 " + (i + 1);
+      var t = document.createElement("span"); t.textContent = text;
+      li.appendChild(b); li.appendChild(t);
+      if (i + 1 === key){ li.className = "hit"; hit = li; }
+      tries.appendChild(li);
+    });
+    tries.hidden = false;
+    if (hit) tries.scrollTop = hit.offsetTop - tries.offsetTop - 40;
+    res.hidden = false; res.className = "res ng"; res.textContent = "";
+    var head = document.createElement("b"); head.textContent = "鍵 " + key + " で読めた！ ";
+    res.appendChild(head);
+    res.appendChild(document.createTextNode((N - 1) + "通りを全部ためすのにかかった時間は、約 " + Math.max(ms, 0.1).toFixed(1) + " ミリ秒。読める文が出てきたところが正解です。"));
+  });
+  plain.addEventListener("input", update);
+  shift.addEventListener("input", update);
+  update();
+})();
+
+/* ---------- real cipher: AES-256-GCM with Web Crypto, in this page only ---------- */
+(function(){
+  var subtle = window.crypto && crypto.subtle;
+  var input = document.getElementById("aesPlain"), keyEl = document.getElementById("aesKey"), out = document.getElementById("aesOut"), res = document.getElementById("aesRes");
+  var bEnc = document.getElementById("aesEnc"), bDec = document.getElementById("aesDec"), bBad = document.getElementById("aesBad");
+  var key = null, fishyKey = null, last = null;
+  function hex(buf){ var a = new Uint8Array(buf), s = ""; for (var i = 0; i < a.length; i++) s += a[i].toString(16).padStart(2,"0"); return s; }
+  function gen(){ return subtle.generateKey({name:"AES-GCM", length:256}, true, ["encrypt","decrypt"]); }
+  function result(kind, head, text){
+    res.hidden = false; res.className = "res " + kind; res.textContent = "";
+    var b = document.createElement("b"); b.textContent = head; res.appendChild(b);
+    res.appendChild(document.createTextNode(text));
+  }
+  if (!subtle){
+    keyEl.textContent = "このブラウザでは、この計算を使えません";
+    bEnc.disabled = true;
+    return;
+  }
+  Promise.all([gen(), gen()]).then(function(ks){
+    key = ks[0]; fishyKey = ks[1];
+    return subtle.exportKey("raw", key);
+  }).then(function(raw){
+    keyEl.textContent = "";
+    var c = document.createElement("code"); c.textContent = hex(raw).slice(0, 24) + "…"; keyEl.appendChild(c);
+    keyEl.appendChild(document.createTextNode(" (本当は64けた。ふたりだけのひみつ)"));
+  }).catch(function(){ keyEl.textContent = "このブラウザでは、この計算を使えません"; bEnc.disabled = true; });
+
+  bEnc.addEventListener("click", function(){
+    if (!key) return;
+    var iv = crypto.getRandomValues(new Uint8Array(12));
+    subtle.encrypt({name:"AES-GCM", iv:iv}, key, new TextEncoder().encode(input.value)).then(function(ct){
+      last = {iv:iv, ct:ct};
+      out.textContent = hex(ct);
+      bDec.disabled = false; bBad.disabled = false;
+      result("info", "暗号化しました。 ", "フィッシーに見えるのは、上の意味のない文字の列だけです。");
+    });
+  });
+  function open(k, who){
+    if (!last) return;
+    subtle.decrypt({name:"AES-GCM", iv:last.iv}, k, last.ct).then(function(pt){
+      result("ok", who + "でひらけた: ", "「" + new TextDecoder().decode(pt) + "」");
+    }, function(){
+      result("ng", who + "ではひらけない！ ", "鍵がちがうので、元の文にもどせませんでした。文の一部さえ読めません。");
+    });
+  }
+  bDec.addEventListener("click", function(){ open(key, "正しい鍵"); });
+  bBad.addEventListener("click", function(){ open(fishyKey, "フィッシーの鍵"); });
+  input.addEventListener("input", function(){
+    last = null; bDec.disabled = true; bBad.disabled = true; res.hidden = true;
+    out.textContent = "(文が変わりました。もう一度暗号化してください)";
+  });
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"暗号文を、鍵を使って元の文章にもどすことを何という？", opts:["暗号化","復号","圧縮"], a:1,
+     why:"読める文章を読めなくするのが暗号化、元にもどすのが復号です。"},
+    {q:"ずらし暗号が、鍵を知らないフィッシーにもすぐ破られたのはなぜ？", opts:["鍵の種類が少なくて、全部ためせるから","ひらがなで書いたから","暗号文が短いから"], a:0,
+     why:"鍵が82通りしかないので、総当たりで一瞬です。本物の暗号は、ためしきれないほど鍵の種類があります。"},
+    {q:"アドレスが https で始まるページ。暗号化で守られているのはどれ？", opts:["途中で盗み見られても読まれないこと","そのサイトが本物であること","どちらも守られる"], a:0,
+     why:"暗号化が守るのは通り道です。にせサイトも https を使えるので、送り先が本物かどうかは別に確かめる必要があります。"}
+  ],
+  perfect: "鍵のしくみ、ばっちりです！",
+  again: "上のコーナーで、ずらし暗号とAESをもう一度くらべてみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

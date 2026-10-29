@@ -24,11 +24,11 @@ var TOC = [
     { title: "CAPTCHA:人間かどうかの確認", href: "ch1/captcha.html", lab: true }
   ]},
   { ch: "第2章 暗号", pages: [
-    { title: "暗号化ってなに？", href: null, lab: true },
-    { title: "共通鍵と公開鍵", href: null },
-    { title: "ハッシュ:データの指紋", href: null, lab: true },
-    { title: "鍵マーク(HTTPS)の本当の意味", href: null },
-    { title: "電子署名と証明書", href: null }
+    { title: "暗号化ってなに？", href: "ch2/encryption.html", lab: true },
+    { title: "共通鍵と公開鍵", href: "ch2/public-key.html", lab: true },
+    { title: "ハッシュ:データの指紋", href: "ch2/hash.html", lab: true },
+    { title: "鍵マーク(HTTPS)の本当の意味", href: "ch2/https.html", lab: true },
+    { title: "電子署名と証明書", href: "ch2/signature.html", lab: true }
   ]},
   { ch: "第3章 だましの手口", pages: [
     { title: "フィッシング", href: null, lab: true },
