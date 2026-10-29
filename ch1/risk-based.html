@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>リスクベース認証</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第1章 本人確認(認証)</span>
+  <h1>リスクベース認証</h1>
+  <p class="sub">サイトのほうが「いつもとちがうぞ？」と気づいてくれる</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>先生、修学旅行先で、友だちのタブレットからどんぐりメールを見ようとしたら、パスワードは合っているのに「確認コードを入力してください」って出たんだ。家では一度も聞かれたことないのに…。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>それは、サイトがきみを守ろうとした証拠だよ。サイトは、ログインのたびに<strong>「いつものまもリス君と、どれくらいちがうか」</strong>をこっそり見ているんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">いつもとのちがいを点数にする</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>マンションの管理人さんを思い出してごらん。毎朝あいさつする住人なら、そのまま通す。でも、見たことのない人が真夜中に大きな荷物を運び出していたら、「どちらのお部屋ですか？」と声をかけるよね。サイトも同じことをしているんだ。</p></div>
+  <div class="ways">
+    <div class="way"><b>どこから</b><span>ネットの住所(IPアドレス)で、おおよその場所が分かる</span></div>
+    <div class="way"><b>どの端末で</b><span>いつものスマホか、はじめてのパソコンか</span></div>
+    <div class="way"><b>どんなふうに</b><span>時間帯、パスワードのまちがい方、前回からの移動</span></div>
+  </div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>こうした「いつもとのちがい」を足し算して<strong>危なさの点数</strong>を出し、点数に合わせて対応を変える。これがリスクベース認証だよ。</p></div>
+  <div class="flow">
+    <div class="gate g2"><span class="step">点数が低い</span><b>そのまま通す</b><span class="ask">いつものきみなら、手間なし</span></div>
+    <div class="gate g1"><span class="step">点数がやや高い</span><b>追加で確認</b><span class="ask">確認コードや、スマホでの承認</span></div>
+    <div class="gate g3"><span class="step">点数がとても高い</span><b>ブロック</b><span class="ask">ログインを止めて、本人に知らせる</span></div>
+  </div>
+  <div class="key k1"><span class="tag">リスクベース認証</span><span class="term">危なさに合わせて、確認のきびしさを変える</span><span class="def">ふだんはパスワードだけで楽に入れて、あやしいときだけ多要素認証などの追加の確認をする。</span></div>
+  <div class="key k2"><span class="tag">追加認証</span><span class="term">あやしいときにだけ求められる、もうひと手間</span><span class="def">「ステップアップ認証」とも呼ぶ。確認コード、スマホへの通知、秘密の質問など。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">やってみよう:サイトの目で見てみる</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>危なさの点数けいさん機</h3><span>点数は説明用のたとえです</span></div>
+    <p class="lab-intro">どんぐりメールに、まもリス君の正しいパスワードでログインがありました。どんな様子のログインだったかを選ぶと、サイトがどう判断するかが分かります。</p>
+    <div class="btns" role="group" aria-label="よくある場面">
+      <button class="btn ghost" type="button" data-preset="home">いつものまもリス君</button>
+      <button class="btn ghost" type="button" data-preset="trip">修学旅行先から</button>
+      <button class="btn ghost" type="button" data-preset="fishy">フィッシーが盗んだパスワードで</button>
+    </div>
+    <div class="accts" id="signals"></div>
+    <div class="risk">
+      <div class="risk-head"><span>危なさの点数</span><b id="riskVal">0</b></div>
+      <div class="simbar" aria-hidden="true"><i id="riskFill"></i><s style="left:30%"></s><s style="left:60%"></s></div>
+      <div class="risk-zones" aria-hidden="true"><span>通す</span><span>追加で確認</span><span>ブロック</span></div>
+    </div>
+    <div class="explain" id="riskExplain" aria-live="polite"></div>
+    <div class="notif-area" id="riskNotif"></div>
+    <p class="assume">本物のサイトは、もっとたくさんの情報を組み合わせて判断しています。どの情報を何点にするかは、サイトごとにちがいます。</p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>パスワードが合っていても、フィッシーはブロックされた！ 「10分前は東京にいたのに、いまは地球の反対側」なんて、ありえないもんね。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そう。<strong>パスワードが正しいかどうか</strong>と、<strong>本人らしいかどうか</strong>は、別の問題なんだ。リスクベース認証は、パスワードが漏れてしまったときの、見えない見張り役なんだよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">フィッシーのすり抜け作戦</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、それなら日本の回線を経由して「いつもの国」のふりをすればいい。昼間の時間に、1回でパスワードを入れれば、点数は低くなるだろう？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そのとおり、見張り役もだまされることはある。だからリスクベース認証は<strong>「おまけの守り」</strong>なんだ。パスワードを使い回さない、多要素認証やパスキーを使う、という基本の守りといっしょに使って、はじめて強くなるんだよ。</p></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>なら、こっちだ。「新しい場所からログインがありました。心当たりがなければ、こちらから確認を」…という<strong>にせの通知メール</strong>を送ってやる！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>いちばん気をつけたい手口だね。通知が来ても、<strong>メールのリンクは押さない</strong>。公式アプリや、ブックマークから自分でサイトを開いて、ログインの記録を確かめよう。</p></div>
+  <div class="key k3"><span class="tag">ログイン通知</span><span class="term">「いつもとちがうログイン」を本人に知らせるしくみ</span><span class="def">心当たりがなければ、すぐにパスワードを変えて、ほかの端末からログアウトする。確認は、メールのリンクではなく公式アプリやブックマークから。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">気をつけること</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>旅行先で確認コードを聞かれたとき、めんどうだなって思っちゃった。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>その手間は、フィッシーにとっての高いかべなんだ。むしろ「ちゃんと見ていてくれた」と思っていいんだよ。</p></div>
+  <div class="todo">
+    <h3>リスクベース認証とつきあうコツ</h3>
+    <ul>
+      <li>いつもとちがう場所や端末で追加の確認が出るのは、ふつうのこと。あわてず、本物の画面で答える</li>
+      <li>自分がログインしていないのに確認コードや通知が届いたら、だれかがパスワードを知っているサイン。すぐにパスワードを変える</li>
+      <li>「新しいログイン」の通知メールのリンクは押さず、公式アプリやブックマークから確かめる</li>
+      <li>借りた端末や学校のパソコンでは、使い終わったら必ずログアウトする</li>
+    </ul>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">しくみ</span><h3>いつもとのちがい</h3><p>場所・端末・時間などを点数に</p><p class="ex">点数に合わせて、通す・確認・ブロック</p></div>
+    <div class="card c2"><span class="en">よいところ</span><h3>ふだんは楽</h3><p>あやしいときだけきびしく</p><p class="ex">パスワードが漏れたときの見張り役</p></div>
+    <div class="card c3"><span class="en">気をつけること</span><h3>おまけの守り</h3><p>だまされることもある</p><p class="ex">通知メールのリンクは押さない</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>見えないところで、管理人さんががんばってくれてたんだね。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そうだよ。次は、1回のログインでいろいろなサービスが使えるようになる「シングルサインオン」の話をしよう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>パスワードは合っているのに「ブロックしました」だと…？ あの管理人、どこから見てるんだ…！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- risk score demo (illustrative points, thresholds 30 / 60) ---------- */
+(function(){
+  var SIGNALS = [
+    {id:"place", nm:"どこから", sub:"ネットの住所から分かる、おおよその場所", opts:[["いつもの家",0],["国内の旅先",15],["外国",35]]},
+    {id:"device", nm:"どの端末で", sub:"ブラウザやOSの種類など", opts:[["いつもの",0],["はじめて",25]]},
+    {id:"time", nm:"時間帯", sub:"まもリス君はいつも夕方に見る", opts:[["いつもの",0],["深夜3時",10]]},
+    {id:"miss", nm:"パスワードの入れ方", sub:"正しいパスワードにたどりつくまで", opts:[["1回で正解",0],["何度も失敗",20]]},
+    {id:"move", nm:"前回のログインからの移動", sub:"10分前は東京からログインしていた", opts:[["ふつう",0],["ありえない速さ",40]]}
+  ];
+  var PRESETS = {
+    home:  {place:0, device:0, time:0, miss:0, move:0},
+    trip:  {place:1, device:1, time:0, miss:0, move:0},
+    fishy: {place:2, device:1, time:1, miss:1, move:1}
+  };
+  var LOW = 30, HIGH = 60;
+  var pick = {place:0, device:0, time:0, miss:0, move:0};
+  var box = document.getElementById("signals"), val = document.getElementById("riskVal"), fill = document.getElementById("riskFill");
+  var explain = document.getElementById("riskExplain"), notif = document.getElementById("riskNotif");
+
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  var chips = {};
+  SIGNALS.forEach(function(sg){
+    var row = el("div", "acct");
+    var nm = el("span", "nm", sg.nm); nm.appendChild(el("small", null, sg.sub));
+    var ctl = el("div", "ctl");
+    var seg = el("div", "seg"); seg.setAttribute("role", "group"); seg.setAttribute("aria-label", sg.nm);
+    sg.opts.forEach(function(o, i){
+      var b = el("button", null, o[0]); b.type = "button"; b.dataset.i = i;
+      seg.appendChild(b);
+    });
+    seg.addEventListener("click", function(e){
+      var b = e.target.closest("button"); if (!b) return;
+      pick[sg.id] = +b.dataset.i; render();
+    });
+    ctl.appendChild(seg);
+    var st = el("span", "st");
+    chips[sg.id] = {seg:seg, st:st};
+    row.appendChild(nm); row.appendChild(ctl); row.appendChild(st);
+    box.appendChild(row);
+  });
+
+  function render(){
+    var total = 0;
+    SIGNALS.forEach(function(sg){
+      var p = sg.opts[pick[sg.id]][1], c = chips[sg.id];
+      total += p;
+      c.seg.querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", +b.dataset.i === pick[sg.id] ? "true" : "false"); });
+      c.st.className = "st " + (p === 0 ? "safe" : p >= 35 ? "hit" : "reset");
+      c.st.textContent = "+" + p + "点";
+    });
+    var lv = total >= HIGH ? 2 : total >= LOW ? 1 : 0;
+    val.textContent = total;
+    fill.style.width = Math.min(total, 100) + "%";
+    fill.parentNode.className = "simbar lv" + lv;
+
+    explain.textContent = "";
+    var v = [
+      ["good", "そのまま通す", "いつものまもリス君らしいログイン。パスワードだけで、手間なく入れます。"],
+      ["mid", "追加で確認する", "いつもとちがうところがあるので、スマホに届く確認コードを聞きます。本人ならすぐ答えられ、パスワードだけを盗んだ人は、ここで止まります。"],
+      ["bad", "ブロックする", "本人らしさがとても低いログイン。パスワードが正しくても入れず、まもリス君に知らせます。"]
+    ][lv];
+    explain.appendChild(el("p", "verdict " + v[0], total + "点:" + v[1]));
+    explain.appendChild(el("p", null, v[2]));
+    if (pick.move === 1) explain.appendChild(el("p", null, "10分で地球の反対側へは移動できません。「ありえない移動」は、パスワードが盗まれたときによく出る、とても強いサインです。"));
+
+    notif.textContent = "";
+    if (lv === 0){ notif.appendChild(el("p", "res info", "まもリス君のスマホには、何も届いていません。")); return; }
+    var n = el("div", "notif");
+    var top = el("div", "top"); top.appendChild(el("span", null, "どんぐりメール")); top.appendChild(el("span", null, "いま"));
+    n.appendChild(top);
+    if (lv === 1){
+      n.appendChild(el("span", "title", "確認コード: 482915"));
+      n.appendChild(el("span", "detail", "ログイン画面に入力してください。自分でログインしていない場合は、だれにも教えず、パスワードを変えてください。"));
+    } else {
+      n.appendChild(el("span", "title", "あやしいログインを止めました"));
+      n.appendChild(el("span", "detail", "正しいパスワードで、いつもとちがう場所・端末からログインがありました。パスワードを変えてください(このアプリやブックマークから)。"));
+    }
+    notif.appendChild(n);
+  }
+
+  document.querySelectorAll("[data-preset]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var p = PRESETS[b.dataset.preset];
+      Object.keys(p).forEach(function(k){ pick[k] = p[k]; });
+      render();
+    });
+  });
+  render();
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"リスクベース認証で、追加の確認を求められやすいのはどれ？", opts:["いつもの家から、いつものスマホで","はじめての国から、はじめての端末で"], a:1,
+     why:"いつもとのちがいが大きいほど、危なさの点数が上がり、確認コードなどの追加の確認が求められやすくなります。"},
+    {q:"自分はログインしていないのに「新しい場所からログインがありました」というメールが来た。どうする？", opts:["気にしないで放っておく","メールのリンクから、すぐにパスワードを変える","公式アプリやブックマークからサイトを開いて、パスワードを変える"], a:2,
+     why:"本物の通知なら、パスワードが漏れているサインです。ただし、通知をまねたにせメールもあるので、リンクは押さずに自分でサイトを開きましょう。"},
+    {q:"リスクベース認証があるサイトなら、パスワードを使い回してもだいじょうぶ？", opts:["だいじょうぶ","だいじょうぶではない"], a:1,
+     why:"フィッシーが場所や時間をごまかせば、点数が低く見えることもあります。リスクベース認証は「おまけの守り」。使い回しをしない、多要素認証を使う、という基本の守りが大切です。"}
+  ],
+  perfect: "見えない管理人さんのしくみ、ばっちりです！",
+  again: "上のけいさん機で、いろいろな場面をためしてみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

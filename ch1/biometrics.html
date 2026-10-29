@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>生体認証(指紋・顔・声)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第1章 本人確認(認証)</span>
+  <h1>生体認証(指紋・顔・声)</h1>
+  <p class="sub">体はパスワードより便利。でも、取りかえがきかない</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>指をのせるだけ、顔を向けるだけでスマホが開くの、便利だよね。体はひとりにひとつだから、ぜったい安全でしょ？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>便利なのは本当だよ。でも「ぜったい」ではないんだ。機械は、きみの体を<strong>「どれくらい似ているか」</strong>で見ているからね。</p></div>
+  <div class="ways">
+    <div class="way"><b>指紋</b><span>指先のうずまきや分かれ道の形</span></div>
+    <div class="way"><b>顔</b><span>目・鼻・口の位置や、顔の立体の形</span></div>
+    <div class="way"><b>声</b><span>声の高さや、ひびき方のくせ</span></div>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">「そっくり度」と合格ライン</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>最初に登録するとき、スマホは指紋や顔の写真そのものではなく、<strong>形の特徴だけ</strong>を数字にして、スマホの中の金庫にしまう。ロック解除のたびに、いまの指や顔と見比べて「そっくり度」を出すんだ。</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>100点満点じゃないと開かないの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>それだと、指がぬれていたり、マスクをしていたりするだけで開かなくなる。だから<strong>「この点数より上なら本人」という合格ライン</strong>を決めているんだ。このラインをどこに引くかが、とても大事なんだよ。</p></div>
+  <div class="key k1"><span class="tag">生体認証</span><span class="term">体の特徴で本人を確かめること</span><span class="def">指紋、顔、声、目の虹彩、手のひらの静脈など。「認証と認可」のページの「体の特徴」にあたる。</span></div>
+  <div class="key k2"><span class="tag">本人拒否と他人受入</span><span class="term">生体認証の2種類のまちがい</span><span class="def">本人なのにはじかれるのが「本人拒否」、他人なのに通ってしまうのが「他人受入」。合格ラインを上げると前者が、下げると後者が増える。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">やってみよう:合格ラインを決める</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>合格ライン調整シミュレーター</h3><span>点数は説明用のたとえです</span></div>
+    <p class="lab-intro">まもリス君のスマホに、いろいろな人(とフィッシー)がロック解除をためします。合格ラインを動かして、<strong>本人は全員通れて、ほかはみんなはじける</strong>ラインをさがそう。</p>
+    <div class="bio-ctl">
+      <div class="seg" role="group" aria-label="認証の種類" id="modes">
+        <button type="button" data-m="finger" aria-pressed="true">指紋</button>
+        <button type="button" data-m="face" aria-pressed="false">顔</button>
+        <button type="button" data-m="voice" aria-pressed="false">声</button>
+      </div>
+      <div class="bio-live">
+        <span id="liveLabel">生きているかチェック</span>
+        <div class="seg" role="group" aria-labelledby="liveLabel" id="live">
+          <button type="button" data-v="0" aria-pressed="true">なし</button>
+          <button type="button" data-v="1" aria-pressed="false">あり</button>
+        </div>
+      </div>
+    </div>
+    <div class="bio-th">
+      <label for="th">合格ライン</label>
+      <span class="bio-th-val"><b id="thVal">80</b> 点以上で通過</span>
+      <input type="range" id="th" min="30" max="99" step="1" value="80">
+      <div class="bio-th-ends" aria-hidden="true"><span>← ゆるい</span><span>きびしい →</span></div>
+    </div>
+    <ul class="bio-list" id="bioList" aria-live="polite"></ul>
+    <div class="legend"><span><i class="lm"></i>本人</span><span><i class="lo"></i>ほかの人</span><span><i class="lf"></i>フィッシーのにせもの</span><span><i class="lt"></i>合格ライン</span></div>
+    <div class="facts" id="bioFacts"></div>
+    <div class="explain" id="bioExplain"></div>
+    <p class="assume">実際の機械は点数を見せませんし、合格ラインもメーカーが調整ずみです。ここでは、しくみが分かるように数字にしています。</p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>顔だと、双子のきょうだいはどうやっても分けられない！ それに、写真やAIの声は、ラインを上げても通っちゃう…。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そこで役に立つのが<strong>「生きているかチェック」</strong>。顔の立体の形やまばたき、指の温かさや皮ふの性質などで、本物の体かどうかを別に調べるんだ。それでも双子のような「本物の別人」は防ぎきれないから、お金を払うような大事な場面では、暗証番号もあわせて聞くことが多いんだよ。</p></div>
+  <div class="key k3"><span class="tag">なりすまし検知</span><span class="term">写真・にせ指・録音を見破るしくみ</span><span class="def">「似ているか」とは別に、「生きている本物の体か」を確かめる。生体検知とも呼ぶ。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">体は取りかえられない</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、パスワードは変えられても、指紋は変えられないだろう？ 一度手に入れたら、一生使えるってわけだ！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そこが生体認証のいちばんの弱点なんだ。パスワードは漏れたら変えればいい。でも指紋や顔は、<strong>漏れても取りかえがきかない</strong>。だから、スマホの生体認証は、特徴のデータを<strong>スマホの外に出さない</strong>つくりになっているんだよ。</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>あ、パスキーのページで「指紋のデータはサイトに送られない」って言ってた！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そのとおり。スマホの指紋や顔は、スマホの中の「はんこの金庫」を開けるためだけに使われる。サイトに届くのは、はんこを押した結果だけだ。それぞれの得意・不得意もくらべておこう。</p></div>
+  <div class="tablewrap">
+    <table class="vs">
+      <thead><tr><th scope="col"></th><th scope="col">指紋</th><th scope="col">顔</th><th scope="col">声</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">手軽さ</th><td><span class="m y">○ 指をのせるだけ</span></td><td><span class="m y">○ 見るだけ</span></td><td><span class="m y">○ 話すだけ</span></td></tr>
+        <tr><th scope="row">苦手な場面</th><td><span class="m p">△ ぬれた指・手袋</span></td><td><span class="m p">△ マスク・暗い場所</span></td><td><span class="m p">△ かぜ・雑音</span></td></tr>
+        <tr><th scope="row">他人とのまちがい</th><td><span class="m y">○ 起きにくい</span></td><td><span class="m n">✕ 双子・よく似た家族</span></td><td><span class="m p">△ 声まね</span></td></tr>
+        <tr><th scope="row">にせもので<br>だまされやすさ</th><td><span class="m p">△ にせ指</span></td><td><span class="m p">△ 写真(立体を見る機種は強い)</span></td><td><span class="m n">✕ AIで作った声</span></td></tr>
+        <tr><th scope="row">寝ている間に</th><td><span class="m n">✕ 指を当てられる</span></td><td><span class="m p">△ 目を開けていないと開かない機種も</span></td><td><span class="m y">○ 話さないと動かない</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">声は、まねされる時代</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>動画から数十秒の声を集めれば、AIでそっくりな声が作れる。「お母さん？ スマホをなくしたから、この番号にお金を送って」…ククク。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>声で本人を確かめる仕組みは、AIのにせ声に弱くなってきている。人間の耳も同じだ。<strong>声がそっくりでも、それだけで信じない</strong>。いったん電話を切って、自分から、いつもの番号にかけ直して確かめよう。家族で「合言葉」を決めておくのもいい方法だよ。</p></div>
+  <div class="todo">
+    <h3>生体認証を使うときのコツ</h3>
+    <ul>
+      <li>スマホの生体認証はオンにしてOK。ただし、画面ロックの暗証番号は他人に分からないものに(生体認証が使えないときの裏口だから)</li>
+      <li>寝ている間や、無理やり指を当てられるのが心配なときは、暗証番号だけでロックする機能を覚えておく</li>
+      <li>指紋や顔の登録は、自分の端末だけで。あやしいアプリやサイトに、顔写真や指紋を送らない</li>
+      <li>電話の声だけで、お金や大事な情報のことを決めない</li>
+    </ul>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">しくみ</span><h3>そっくり度で判定</h3><p>合格ラインより上なら本人</p><p class="ex">きびしすぎると本人拒否、ゆるすぎると他人受入</p></div>
+    <div class="card c2"><span class="en">弱点</span><h3>取りかえがきかない</h3><p>だから端末の外に出さない</p><p class="ex">写真やにせ指は、なりすまし検知で見破る</p></div>
+    <div class="card c3"><span class="en">守ること</span><h3>声だけで信じない</h3><p>AIでまねされる時代</p><p class="ex">かけ直して確かめる、家族の合言葉</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>体も「100%の鍵」じゃないんだね。おばあちゃんに、電話の声だけで信じないでって伝えておく！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>いいね。次は、サイトのほうが「いつもとちがうぞ？」と気づいてくれる「リスクベース認証」の話だよ。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>せっかく写真を印刷したのに「立体じゃない」だと…？ 次は粘土で顔を作ってやる…！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- biometric threshold demo (illustrative scores, no real sensor) ---------- */
+(function(){
+  /* kind: me = 本人, other = ほかの人, fake = にせもの(なりすまし検知で見破れる) */
+  var DATA = {
+    finger: [
+      {who:"いつもの指", kind:"me", s:96},
+      {who:"お風呂あがりのぬれた指", kind:"me", s:84},
+      {who:"かさかさに荒れた指", kind:"me", s:71},
+      {who:"お兄さんの指", kind:"other", s:38},
+      {who:"知らない人の指", kind:"other", s:12},
+      {who:"コップに残った指紋で作ったにせ指", kind:"fake", s:86}
+    ],
+    face: [
+      {who:"いつもの顔", kind:"me", s:95},
+      {who:"寝起きで暗い部屋", kind:"me", s:81},
+      {who:"マスクとめがね", kind:"me", s:72},
+      {who:"双子のきょうだい", kind:"other", s:88},
+      {who:"よく似たいとこ", kind:"other", s:61},
+      {who:"フィッシーが印刷した顔写真", kind:"fake", s:90}
+    ],
+    voice: [
+      {who:"いつもの声", kind:"me", s:93},
+      {who:"電車の中(まわりがうるさい)", kind:"me", s:75},
+      {who:"かぜで鼻声", kind:"me", s:68},
+      {who:"声まねが得意な友だち", kind:"other", s:64},
+      {who:"知らない人の声", kind:"other", s:20},
+      {who:"AIで作ったにせの声", kind:"fake", s:91}
+    ]
+  };
+  var KIND = {me:"本人", other:"ほかの人", fake:"にせもの"};
+  var mode = "finger", live = false;
+  var th = document.getElementById("th"), thVal = document.getElementById("thVal");
+  var list = document.getElementById("bioList"), facts = document.getElementById("bioFacts"), explain = document.getElementById("bioExplain");
+
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function judge(a, t){
+    if (a.kind === "fake" && live) return {cls:"safe", label:"にせものと見破った", bad:null};
+    var pass = a.s >= t;
+    if (a.kind === "me") return pass ? {cls:"safe", label:"通過", bad:null} : {cls:"reset", label:"本人なのに×", bad:"rej"};
+    if (pass) return {cls:"hit", label: a.kind === "fake" ? "にせもので通過" : "他人が通過", bad: a.kind === "fake" ? "fake" : "acc"};
+    return {cls:"safe", label:"はじいた", bad:null};
+  }
+  function fact(label, n){ var f = el("span", "fact", label + " "); f.appendChild(el("b", null, n + "件")); return f; }
+
+  function render(){
+    var t = +th.value, items = DATA[mode], cnt = {rej:0, acc:0, fake:0};
+    thVal.textContent = t;
+    list.textContent = "";
+    items.forEach(function(a){
+      var j = judge(a, t);
+      if (j.bad) cnt[j.bad]++;
+      var li = el("li", "bio " + a.kind);
+      var who = el("div", "who"); who.appendChild(el("b", null, a.who)); who.appendChild(el("small", null, KIND[a.kind]));
+      var sim = el("div", "sim");
+      var bar = el("div", "simbar"); bar.setAttribute("aria-hidden", "true");
+      var fill = el("i"); fill.style.width = a.s + "%"; bar.appendChild(fill);
+      var mark = el("s"); mark.style.left = t + "%"; bar.appendChild(mark);
+      sim.appendChild(bar); sim.appendChild(el("span", "pct", "そっくり度 " + a.s));
+      li.appendChild(who); li.appendChild(sim); li.appendChild(el("span", "st " + j.cls, j.label));
+      list.appendChild(li);
+    });
+
+    facts.textContent = "";
+    facts.appendChild(fact("本人なのにはじかれた", cnt.rej));
+    facts.appendChild(fact("他人が通った", cnt.acc));
+    facts.appendChild(fact("にせもので通った", cnt.fake));
+
+    var v, vc, hints = [];
+    if (!cnt.rej && !cnt.acc && !cnt.fake){ v = "ちょうどいい合格ライン！ 本人は全員通れて、ほかはすべてはじけた。"; vc = "good"; }
+    else if (cnt.rej && !cnt.acc && !cnt.fake){ v = "きびしすぎる…本人が開けられなくて困っている。"; vc = "mid"; }
+    else if (!cnt.rej){ v = "ゆるすぎる…本人以外が入れてしまう。"; vc = "bad"; }
+    else { v = "本人ははじかれ、本人以外は通る…いちばん困る状態。"; vc = "bad"; }
+    if (cnt.fake) hints.push("にせもの(写真・にせ指・AIの声)は本人そっくりなので、ラインを上げても止めにくい。「生きているかチェック」を「あり」にしてみよう。");
+    if (mode === "face" && t <= 88) hints.push("双子のきょうだい(88点)は、マスクをした本人(72点)より似ている。ラインだけではどうやっても分けられないので、大事な場面では暗証番号もいっしょに使う。");
+    if (mode === "voice" && !cnt.rej && !cnt.acc && !cnt.fake) hints.push("声は、本人の鼻声(68点)と友だちの声まね(64点)の差がとても小さい。少しの体調の変化でも、まちがいが起きやすい。");
+    if (mode === "finger" && vc === "good" && live) hints.push("指紋は、他人とのまちがいが起きにくい方法。にせ指はなりすまし検知で防いでいる。");
+
+    explain.textContent = "";
+    explain.appendChild(el("p", "verdict " + vc, v));
+    hints.forEach(function(h){ explain.appendChild(el("p", null, h)); });
+  }
+
+  function bindSeg(id, attr, set){
+    var g = document.getElementById(id);
+    g.addEventListener("click", function(e){
+      var b = e.target.closest("button"); if (!b) return;
+      g.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      set(b.getAttribute(attr)); render();
+    });
+  }
+  bindSeg("modes", "data-m", function(v){ mode = v; });
+  bindSeg("live", "data-v", function(v){ live = v === "1"; });
+  th.addEventListener("input", render);
+  render();
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"生体認証の合格ラインを下げる(ゆるくする)と、どうなりやすい？", opts:["本人がはじかれやすくなる","他人が通りやすくなる","どちらも変わらない"], a:1,
+     why:"ラインを下げると、本人は通りやすくなりますが、そのぶん似ている他人も通りやすくなります(他人受入)。上げると反対に、本人がはじかれやすくなります。"},
+    {q:"パスワードとくらべて、指紋のデータが漏れたときに困るのはなぜ？", opts:["指紋は取りかえられないから","指紋は毎日変わるから"], a:0,
+     why:"パスワードは漏れたら変えられますが、指紋や顔は一生取りかえがききません。だからスマホでは、特徴のデータを端末の外に出さないようにしています。"},
+    {q:"電話で、家族そっくりの声が「お金を送って」と言ってきた。正しい行動は？", opts:["声が本人そっくりなので送る","いったん切って、自分からいつもの番号にかけ直す","相手に暗証番号を伝えて確かめてもらう"], a:1,
+     why:"AIで声はまねできる時代です。声だけで信じず、自分から、知っている番号にかけ直して確かめましょう。"}
+  ],
+  perfect: "合格ラインの引き方、ばっちりです！",
+  again: "上のコーナーで、合格ラインをもう一度動かしてみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

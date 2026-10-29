@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CAPTCHA:人間かどうかの確認</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第1章 本人確認(認証)</span>
+  <h1>CAPTCHA:人間かどうかの確認</h1>
+  <p class="sub">「私はロボットではありません」の、本当の役目</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>コンサートのチケットを買おうとしたら、「信号機の写っている画像をすべて選んでください」って出たんだ。ぼくはリスだけど、ロボットじゃないよ！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>あれは<strong>CAPTCHA(キャプチャ)</strong>といって、相手が人間か、コンピューターのプログラム(ロボット)かを見分けるテストなんだ。これまでのページは「あなたはだれ？」を確かめる話だったけど、今日は<strong>「あなたは人間？」</strong>を確かめる話だよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">ロボットは、つかれない</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>でも、ロボットが来たら何が困るの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>ロボットは、1秒に何百回でも、休まず同じことをくり返せる。人間ならできない<strong>「数の力」</strong>で悪さをするんだ。</p></div>
+  <div class="ways">
+    <div class="way"><b>パスワードの総当たり</b><span>漏れたパスワードの一覧を、ログイン画面に次々ためす</span></div>
+    <div class="way"><b>買い占め</b><span>人気のチケットを一瞬で買い、高く転売する</span></div>
+    <div class="way"><b>にせアカウント</b><span>何万個も作って、迷惑な書きこみや宣伝をばらまく</span></div>
+  </div>
+  <div class="key k1"><span class="tag">CAPTCHA</span><span class="term">人間とコンピューターを見分ける、自動のテスト</span><span class="def">人間にはかんたんで、プログラムにはむずかしい問題を出して、ロボットの「数の力」をおさえる。本人かどうか(認証)は確かめない。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">やってみよう:ゆがんだ文字を読む</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>むかしのCAPTCHAは、ゆがんだ文字を読ませるものが多かった。人間の目はゆがんでいても読めるけど、むかしのコンピューターは苦手だったんだ。</p></div>
+  <div class="lab">
+    <div class="lab-head"><h3>むかしながらのCAPTCHA</h3><span>このページの中だけで動くまねです</span></div>
+    <p class="lab-intro">下の画像に書かれた5文字を入力してください。大文字・小文字は区別しません。</p>
+    <div class="cap-img" id="capImg" role="img" aria-label="ゆがんだ5文字の画像。読みにくいときは「答えを見る」を押してください"></div>
+    <div class="field"><label for="capIn">画像の文字</label><input class="code-in" id="capIn" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABCDE"></div>
+    <div class="btns">
+      <button class="btn" type="button" id="capCheck">確かめる</button>
+      <button class="btn ghost" type="button" id="capNew">別の文字にする</button>
+      <button class="btn ghost" type="button" id="capShow">答えを見る</button>
+    </div>
+    <p class="res info" id="capRes" aria-live="polite">読めたら入力して「確かめる」を押してね。</p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>うーん、「U」なのか「V」なのか、人間のぼくでもまちがえそう…。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そうなんだ。しかも今のAIは、こういう文字を<strong>人間より正確に</strong>読めてしまう。目の見えにくい人には、もっとつらいテストだ。だから本物のCAPTCHAには、音声で答える方法なども用意されているし、問題の出し方そのものも変わってきたんだよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">やってみよう:見えないチェック</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>そういえば、「私はロボットではありません」にチェックを入れるだけで通れることもあるよね。あれは、なんで分かるの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>チェックそのものより、<strong>チェックするまでの様子</strong>を見ているんだ。ためしてみよう。</p></div>
+  <div class="lab">
+    <div class="lab-head"><h3>チェックするまでの様子を見る</h3><span>このページの中だけで動くまねです</span></div>
+    <p class="lab-intro">「はじめる」を押してから、ふつうにチェックを入れてみよう。そのあと、フィッシーのロボットにも同じことをさせてみよう。</p>
+    <div class="btns">
+      <button class="btn" type="button" id="botStart">はじめる</button>
+      <button class="btn deny" type="button" id="botRobot">ロボットにチェックさせる</button>
+    </div>
+    <div class="robot-box" id="robotBox" hidden>
+      <button class="robot-check" type="button" id="robotCheck" aria-pressed="false"><span class="sq" aria-hidden="true"></span>私はロボットではありません</button>
+      <span class="robot-tag">CAPTCHA(まね)</span>
+    </div>
+    <ol class="steps" id="botSteps" aria-live="polite">
+      <li class="wait"><span>チェックすると、ここにサイトが見た様子が出ます。</span></li>
+    </ol>
+    <p class="res info" id="botRes" hidden></p>
+    <p class="assume">ここでは3つのことだけを見ています。本物のCAPTCHAはもっとたくさんの様子を組み合わせていて、何を見ているかは、ロボットに対策されないよう公開されていません。このページは、見た様子をどこにも送りません。</p>
+  </div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>ロボットは、一瞬で、まっすぐ、ぴったりまん中を押す。人間は、もっとのんびりで、少しゆらゆらしている。<strong>人間らしくない</strong>と判断したときだけ、画像のクイズを追加で出すんだ。「リスクベース認証」とよく似た考え方だね。</p></div>
+  <div class="key k2"><span class="tag">見えないCAPTCHA</span><span class="term">クイズを出さずに、様子で見分ける</span><span class="def">ページの使い方や、チェックまでの動きなどから「人間らしさ」を判断する。あやしいときだけ、画像のクイズなどを出す。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">フィッシーの「にせCAPTCHA」</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、CAPTCHAはみんな見なれているからな。にせの画面を出して、こう書いておけば、言うとおりにするだろう？</p></div>
+  <div class="fake-cap" aria-label="にせCAPTCHAの例">
+    <span class="fake-tag">にせものの例</span>
+    <b>ロボットでないことを確認してください</b>
+    <ol>
+      <li>Windowsキー + R を押す</li>
+      <li>Ctrl + V で貼り付ける</li>
+      <li>Enter を押す</li>
+    </ol>
+  </div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>これは本当にある手口だ。画面を開いたとき、こっそり<strong>悪い命令</strong>がコピーされていて、言われたとおりにすると、きみ自身の手でパソコンにウイルスを入れてしまう。</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>ロボットじゃないって証明するだけなのに、キーボードで命令を打つなんて、たしかにおかしいね。</p></div>
+  <div class="key k3"><span class="tag">にせCAPTCHA</span><span class="term">「確認」のふりをして、危ない操作をさせる</span><span class="def">本物のCAPTCHAは、キーボードで命令を打たせる、アプリを入れさせる、通知を許可させる、ということはしない。言われたら、すぐに画面を閉じる。</span></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>チッ…。なら本物のCAPTCHAは、お金を払って人間に解かせてやる！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そういう悪い商売も実際にある。だからCAPTCHAは、ロボットの数を<strong>へらす</strong>ための守りで、完全に止めるものではないんだ。強いパスワード、多要素認証、リスクベース認証と重ねて使うんだよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="todo">
+    <h3>CAPTCHAが出たときのコツ</h3>
+    <ul>
+      <li>画像や文字のクイズは、落ち着いて答えればOK。読みにくければ、別の問題や音声版に切りかえる</li>
+      <li>「Windowsキー+R」「コマンドを貼り付けて」「アプリを入れて」「通知を許可して」と言われたら、にせもの。すぐ閉じる</li>
+      <li>うっかり言うとおりにしてしまったら、ネットから外して、家の人や学校・会社に、すぐ相談する</li>
+    </ul>
+  </div>
+  <div class="cards">
+    <div class="card c1"><span class="en">役目</span><h3>人間かを見分ける</h3><p>本人かどうかは見ていない</p><p class="ex">ロボットの「数の力」をおさえる</p></div>
+    <div class="card c2"><span class="en">いまの形</span><h3>様子で見分ける</h3><p>あやしいときだけクイズ</p><p class="ex">ゆがんだ文字はAIが読めてしまう</p></div>
+    <div class="card c3"><span class="en">気をつけること</span><h3>にせCAPTCHA</h3><p>命令を打たせたら、にせもの</p><p class="ex">本物は、キーボード操作を求めない</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>これで第1章はおしまい！ 「だれ？」を確かめる方法が、こんなにたくさんあるなんて。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>よくがんばったね。パスキーのページで出てきた「はんこと印影」のような、ひみつを守る計算のしくみを、第2章「暗号」でくわしく見ていこう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>オレのロボット、ぴったりまん中を押すのがじまんだったのに…。それがバレる原因だったとは…！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- distorted-text CAPTCHA demo (SVG, no external images) ---------- */
+(function(){
+  var CHARS = "ACDEFHJKLMNPRTUVWXY34679"; // no 0/O, 1/I, 2/Z, 5/S, 8/B
+  var NS = "http://www.w3.org/2000/svg";
+  var img = document.getElementById("capImg"), input = document.getElementById("capIn"), res = document.getElementById("capRes");
+  var answer = "", misses = 0;
+  function r(a, b){ return a + Math.random() * (b - a); }
+  function svgEl(tag, attrs){ var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  function say(kind, head, text){
+    res.className = "res " + kind; res.textContent = "";
+    if (head){ var b = document.createElement("b"); b.textContent = head; res.appendChild(b); }
+    res.appendChild(document.createTextNode(text));
+  }
+  function gen(){
+    answer = ""; misses = 0;
+    for (var i = 0; i < 5; i++) answer += CHARS[Math.floor(Math.random() * CHARS.length)];
+    var svg = svgEl("svg", {viewBox:"0 0 260 80", "aria-hidden":"true"});
+    for (var d = 0; d < 40; d++) svg.appendChild(svgEl("circle", {cx:r(0,260), cy:r(0,80), r:r(.8,2), "class":"dot"}));
+    var wave = "M0 " + r(30,50);
+    for (var x = 26; x <= 260; x += 26) wave += " Q" + (x - 13) + " " + r(10,70) + " " + x + " " + r(25,55);
+    svg.appendChild(svgEl("path", {d:wave, "class":"noise"}));
+    for (var c = 0; c < 5; c++){
+      var cx = 30 + c * 48 + r(-6,6), cy = 54 + r(-10,10);
+      var t = svgEl("text", {x:cx, y:cy, "font-size":Math.round(r(34,44)), transform:"rotate(" + Math.round(r(-28,28)) + " " + cx + " " + cy + ") skewX(" + Math.round(r(-15,15)) + ")"});
+      t.textContent = answer[c];
+      svg.appendChild(t);
+    }
+    for (var l = 0; l < 5; l++) svg.appendChild(svgEl("line", {x1:r(0,80), y1:r(0,80), x2:r(180,260), y2:r(0,80), "class":"noise"}));
+    img.textContent = ""; img.appendChild(svg);
+    input.value = "";
+    say("info", "", "読めたら入力して「確かめる」を押してね。");
+  }
+  function check(){
+    var v = input.value.toUpperCase().replace(/\s/g, "");
+    if (!v){ say("info", "", "文字を入力してから「確かめる」を押してね。"); input.focus(); return; }
+    if (v === answer){ say("ok", "人間だと判定！ ", "通過しました。でも今のAIなら、この画像もかんたんに読めてしまいます。"); return; }
+    misses++;
+    say("ng", "ちがいました。 ", misses >= 2 ? "人間でも、何回もまちがえることがあります。「別の文字にする」で取りかえてもOK。" : "もう一度、よく見てみよう。");
+  }
+  document.getElementById("capCheck").addEventListener("click", check);
+  input.addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); check(); } });
+  document.getElementById("capNew").addEventListener("click", gen);
+  document.getElementById("capShow").addEventListener("click", function(){
+    say("info", "答え: ", answer.split("").join(" ") + "(本物のCAPTCHAでは、答えの代わりに音声で聞ける方法などが用意されています)");
+  });
+  gen();
+})();
+</script>
+<script>
+/* ---------- invisible-check demo: time, movement, click position (nothing is sent) ---------- */
+(function(){
+  var box = document.getElementById("robotBox"), chk = document.getElementById("robotCheck");
+  var stepsEl = document.getElementById("botSteps"), res = document.getElementById("botRes");
+  var t0 = 0, moves = 0, armed = false;
+  function addStep(ok, head, text){
+    var li = document.createElement("li"); li.className = ok ? "ok" : "ng";
+    var d = document.createElement("span");
+    var b = document.createElement("b"); b.textContent = head; d.appendChild(b);
+    d.appendChild(document.createTextNode(" " + text));
+    li.appendChild(d); stepsEl.appendChild(li);
+    return ok ? 1 : 0;
+  }
+  function reset(){
+    stepsEl.textContent = ""; res.hidden = true;
+    chk.setAttribute("aria-pressed", "false"); chk.disabled = false;
+    box.hidden = false;
+  }
+  function track(){ if (armed) moves++; }
+  document.addEventListener("pointermove", track, {passive:true});
+  window.addEventListener("scroll", track, {passive:true});
+
+  function judge(sec, mv, input, offset){
+    armed = false;
+    chk.setAttribute("aria-pressed", "true"); chk.disabled = true;
+    stepsEl.textContent = "";
+    var score = 0;
+    score += addStep(sec >= 0.8, "チェックまでの時間:", sec.toFixed(2) + "秒。" + (sec >= 0.8 ? "人間らしい、のんびりさ。" : "人間には速すぎる。"));
+    if (input === "touch") score += addStep(true, "動き:", "指で画面をタップした。");
+    else if (input === "key") score += addStep(true, "動き:", "キーボードで操作した。キーボードを使う人も、もちろん人間。");
+    else score += addStep(mv >= 3, "動き:", "マウスやスクロールの動きが " + mv + " 回。" + (mv >= 3 ? "ゆらゆらした、人間らしい動き。" : "ほとんど動いていない。"));
+    if (offset == null) score += addStep(true, "押した位置:", "キーボードなので位置はなし。");
+    else score += addStep(offset >= 2, "押した位置:", "まん中から " + Math.round(offset) + "px。" + (offset >= 2 ? "少しずれていて、人間らしい。" : "ぴったりまん中。機械のように正確。"));
+    res.hidden = false;
+    var b = document.createElement("b"); res.textContent = "";
+    if (score >= 2){ res.className = "res ok"; b.textContent = "人間らしいと判定！ "; res.appendChild(b); res.appendChild(document.createTextNode("画像のクイズなしで通過しました。")); }
+    else { res.className = "res ng"; b.textContent = "ロボットかも？ "; res.appendChild(b); res.appendChild(document.createTextNode("念のため、画像のクイズを追加で出します。ロボットはここで足止めされます。")); }
+  }
+
+  document.getElementById("botStart").addEventListener("click", function(){
+    reset(); t0 = performance.now(); moves = 0; armed = true;
+    var li = document.createElement("li"); li.className = "wait";
+    var s = document.createElement("span"); s.textContent = "チェックを入れてみよう。";
+    li.appendChild(s); stepsEl.appendChild(li);
+  });
+  chk.addEventListener("click", function(e){
+    if (!armed) return;
+    var sec = (performance.now() - t0) / 1000, input = "mouse", offset = null;
+    if (e.detail === 0) input = "key";
+    else {
+      if (e.pointerType === "touch" || e.pointerType === "pen") input = "touch";
+      var sq = chk.querySelector(".sq").getBoundingClientRect();
+      offset = Math.hypot(e.clientX - (sq.left + sq.width / 2), e.clientY - (sq.top + sq.height / 2));
+    }
+    judge(sec, moves, input, offset);
+  });
+  document.getElementById("botRobot").addEventListener("click", function(){
+    reset();
+    judge(0.04, 0, "mouse", 0);
+  });
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"CAPTCHAが確かめているのは、どれ？", opts:["本人かどうか","人間か、ロボットか"], a:1,
+     why:"CAPTCHAは「あなたはだれ？」ではなく「あなたは人間？」を確かめます。本人確認(認証)は、パスワードや多要素認証の役目です。"},
+    {q:"「ロボットでないことを確認するため、Windowsキー+Rを押して、貼り付けてEnterを押してください」と出た。どうする？", opts:["言われたとおりにする","本物のCAPTCHAはそんなことをさせないので、すぐ閉じる"], a:1,
+     why:"これは、自分の手でウイルスを入れさせる、にせCAPTCHAの手口です。本物は、キーボードで命令を打たせたりしません。"},
+    {q:"チェックボックスを押しただけで通れることがあるのは、なぜ？", opts:["押すまでの時間や動きなども見て、人間らしいと判断したから","チェックボックスはただの飾りだから"], a:0,
+     why:"今のCAPTCHAは、チェックまでの様子などから人間らしさを判断し、あやしいときだけ画像のクイズを出します。"}
+  ],
+  perfect: "第1章、ばっちり修了です！",
+  again: "⑤の「にせCAPTCHA」をもう一度読んでみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

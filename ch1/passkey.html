@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>パスキー</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第1章 本人確認(認証)</span>
+  <h1>パスキー</h1>
+  <p class="sub">パスワードのいらない未来は、もう始まっている</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>長いパスフレーズに、サイトごとに別々に、多要素認証…。先生、守るのって大変だよ。いっそパスワードなんて、なくなればいいのに。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>実は、なくせるんだ。<strong>パスキー</strong>という仕組みを使えばね。スマホで「パスキーを作成しますか？」と聞かれたこと、ないかな？</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">「はんこ」と「印影」のしくみ</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>はんこを思い出してごらん。銀行に届け出るのは、紙に押した<strong>印影</strong>だけ。はんこそのものは、きみが手元に持っているよね。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>パスキーも同じなんだ。登録するとき、スマホの中で<strong>はんこと印影のペア</strong>が作られる。サイトには印影だけを渡して、はんこはスマホの中にしまっておく。ログインのたびに、サイトが毎回ちがう「問題の紙」を送ってくるから、スマホがはんこを押して返す。サイトは印影と見比べて「本物のはんこだ」と確かめるんだ。</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>じゃあ、ぼくは何も覚えなくていいの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そう。きみがするのは、<strong>スマホのロックを解除するだけ</strong>。指紋や顔、画面ロックの暗証番号でね。指紋や顔のデータはスマホの中で使われるだけで、サイトには送られないよ。</p></div>
+  <div class="key k1"><span class="tag">パスキー</span><span class="term">パスワードの代わりになる、新しいログイン方法</span><span class="def">スマホやパソコンの中の「はんこ」で本人を確かめる。きみが覚えるものも、入力するものもない。</span></div>
+  <div class="key k2"><span class="tag">秘密鍵と公開鍵</span><span class="term">はんこと印影の、本当の名前</span><span class="def">はんこ(秘密鍵)は持ち主だけが持ち、印影(公開鍵)は相手に渡してよい。くわしくは第2章「共通鍵と公開鍵」で。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">やってみよう:はんこでログイン</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>パスキーでログインしてみよう</h3><span>このページの中だけで動くまねです</span></div>
+    <p class="lab-intro">まもリス君は「どんぐりメール」にパスキーを登録ずみです。本物のサイトと、フィッシーのにせサイトで、ログインをくらべてみよう。</p>
+    <div class="keys">
+      <div class="keybox"><b>スマホの中:はんこ(秘密鍵)</b><span>どんぐりメール専用。スマホの外には出ない</span></div>
+      <div class="keybox"><b>サイトが持っているもの:印影(公開鍵)</b><span id="pubfp">準備中…</span></div>
+    </div>
+    <div class="btns">
+      <button class="btn" type="button" id="goReal">本物 donguri-mail.example でログイン</button>
+      <button class="btn deny" type="button" id="goFake">にせ donguri-maii.example でログイン</button>
+    </div>
+    <ol class="steps" id="steps" aria-live="polite">
+      <li class="wait"><span>ボタンを押すと、ここにログインの流れが出ます。</span></li>
+    </ol>
+    <p class="res info" id="pkRes" hidden></p>
+    <p class="assume">はんこを押す計算(電子署名)と、印影での確認は、実際のパスキーと同じ種類の暗号の計算を、このページの中で行っています。</p>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>にせサイトだと、そもそも、はんこが出てこない！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>はんこには、<strong>サイトの名前が彫りこまれている</strong>んだ。「donguri-mail」用のはんこは、1文字ちがいの「donguri-maii」には押せない。きみが見まちがえても、スマホは見まちがえないんだよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">フィッシーの作戦が効かない</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、それならサイトに忍びこんで、会員の情報をまるごと盗んでやる！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>サイトにあるのは印影だけ。印影をいくら集めても、はんこは作れないよ。これまでの方法とくらべてみよう。</p></div>
+  <div class="tablewrap">
+    <table class="vs">
+      <thead><tr><th scope="col">フィッシーの作戦</th><th scope="col">パスワードだけ</th><th scope="col">パスワード+確認コード</th><th scope="col">パスキー</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">にせサイトに入力させる</th><td><span class="m n">✕ 盗まれる</span></td><td><span class="m p">△ コードも盗まれることがある</span></td><td><span class="m y">○ はんこが押せない</span></td></tr>
+        <tr><th scope="row">サイトから情報を盗む</th><td><span class="m n">✕ 使い回しなら全滅</span></td><td><span class="m p">△ パスワードは漏れる</span></td><td><span class="m y">○ 印影しかない</span></td></tr>
+        <tr><th scope="row">よくある言葉で当てる</th><td><span class="m n">✕ 弱いと当たる</span></td><td><span class="m y">○ コードが必要</span></td><td><span class="m y">○ 当てるものがない</span></td></tr>
+        <tr><th scope="row">通知をれんだする</th><td><span class="m y">○ 関係ない</span></td><td><span class="m p">△ 承認方式だと押してしまう人も</span></td><td><span class="m y">○ 自分で始めたときしか動かない</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key k3"><span class="tag">フィッシングに強い</span><span class="term">パスキーのいちばんの強み</span><span class="def">にせサイトでは、そもそもログインの仕組みが動かない。人間の見まちがいを、仕組みでカバーしてくれる。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">気をつけること</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>でも、スマホをなくしたら、はんこもなくなっちゃうよね？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>いいところに気づいたね。多くのパスキーは、iPhoneならiCloud、AndroidならGoogleのアカウントに安全に保存されていて、新しいスマホにも引きつげる。それでも、念のため<strong>別のログイン方法</strong>も残しておこう。</p></div>
+  <div class="todo">
+    <h3>パスキーを使うときのコツ</h3>
+    <ul>
+      <li>スマホの画面ロックを、他人に分からないものにする(はんこの金庫だから)</li>
+      <li>スマホを機種変更するときは、保存先のアカウントを確認する</li>
+      <li>パスキーに対応していないサイトも、まだたくさんある。そこではこれまでのコツを続ける</li>
+      <li>学校や会社のアカウントは、決められたルールに従う</li>
+    </ul>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">しくみ</span><h3>はんこはスマホの中</h3><p>サイトには印影だけ</p><p class="ex">盗まれても、印影ではログインできない</p></div>
+    <div class="card c2"><span class="en">強み</span><h3>にせサイトで押せない</h3><p>サイトの名前が彫りこまれている</p><p class="ex">見まちがいを仕組みで防ぐ</p></div>
+    <div class="card c3"><span class="en">守ること</span><h3>スマホのロック</h3><p>はんこの金庫を固くする</p><p class="ex">別のログイン方法も残しておく</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>今度「パスキーを作成しますか？」って出たら、作ってみる！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>うん。次は、ロック解除に使っている指紋や顔、つまり「生体認証」の話をしよう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>せっかく1文字ちがいのにせサイトを作ったのに、はんこを押してくれない…。こんなの、釣りにならないじゃないか！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- passkey stamp demo (ECDSA P-256 sign/verify in this page only) ---------- */
+(function(){
+  var RP = "donguri-mail.example";
+  var subtle = window.crypto && crypto.subtle;
+  var keys = null;
+  var stepsEl = document.getElementById("steps"), res = document.getElementById("pkRes"), fp = document.getElementById("pubfp");
+  var bReal = document.getElementById("goReal"), bFake = document.getElementById("goFake");
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function hex(buf, n){ var a = new Uint8Array(buf), s = ""; for (var i = 0; i < Math.min(a.length, n || a.length); i++) s += a[i].toString(16).padStart(2,"0"); return s; }
+  function rand(n){ var a = new Uint8Array(n); crypto.getRandomValues(a); return a; }
+
+  var ready = subtle
+    ? subtle.generateKey({name:"ECDSA", namedCurve:"P-256"}, true, ["sign","verify"]).then(function(k){
+        keys = k;
+        return subtle.exportKey("raw", k.publicKey).then(function(raw){ return subtle.digest("SHA-256", raw); }).then(function(d){
+          fp.textContent = ""; fp.appendChild(document.createTextNode("印影の特徴 "));
+          var c = document.createElement("code"); c.textContent = hex(d, 8).match(/.{4}/g).join(" "); fp.appendChild(c);
+        });
+      }).catch(function(){ subtle = null; fp.textContent = "このブラウザでは計算を省略して表示します"; })
+    : Promise.resolve().then(function(){ fp.textContent = "このブラウザでは計算を省略して表示します"; });
+
+  function sleep(ms){ return new Promise(function(r){ setTimeout(r, reduce ? 0 : ms); }); }
+  function addStep(kind, head, text, codeText){
+    var li = document.createElement("li"); li.className = kind;
+    var d = document.createElement("span");
+    var b = document.createElement("b"); b.textContent = head; d.appendChild(b);
+    d.appendChild(document.createTextNode(" " + text));
+    if (codeText){ d.appendChild(document.createTextNode(" ")); var c = document.createElement("code"); c.textContent = codeText; d.appendChild(c); }
+    li.appendChild(d); stepsEl.appendChild(li);
+  }
+  function result(kind, head, text){
+    res.hidden = false; res.className = "res " + kind; res.textContent = "";
+    var b = document.createElement("b"); b.textContent = head; res.appendChild(b);
+    res.appendChild(document.createTextNode(text));
+  }
+  function lock(on){ bReal.disabled = on; bFake.disabled = on; }
+
+  function run(site){
+    lock(true); stepsEl.textContent = ""; res.hidden = true;
+    var challenge = rand(16);
+    ready.then(function(){
+      addStep("ok", "問題の紙が届く:", site + " から、毎回ちがう問題が届いた。", hex(challenge));
+      return sleep(700);
+    }).then(function(){
+      if (site !== RP){
+        addStep("ng", "はんこを探す:", "スマホが「" + site + "」用のはんこを探したけれど、見つからない。");
+        return sleep(500).then(function(){
+          result("ok", "フィッシーには何も渡らなかった！ ", "はんこは「" + RP + "」専用です。1文字ちがいのにせサイトでは、ログインの仕組みそのものが動きません。");
+          return "done";
+        });
+      }
+      addStep("ok", "はんこを探す:", "「" + site + "」用のはんこが見つかった。");
+      return sleep(700).then(function(){
+        addStep("ok", "ロック解除:", "指紋でスマホのロックを解除。指紋のデータはスマホの外に出ない。");
+        return sleep(700);
+      }).then(function(){
+        if (!subtle) return {sig:null, ok:true};
+        var msg = new Uint8Array(challenge.length + RP.length);
+        msg.set(challenge); msg.set(new TextEncoder().encode(RP), challenge.length);
+        return subtle.sign({name:"ECDSA", hash:"SHA-256"}, keys.privateKey, msg).then(function(sig){
+          return subtle.verify({name:"ECDSA", hash:"SHA-256"}, keys.publicKey, sig, msg).then(function(ok){ return {sig:sig, ok:ok}; });
+        });
+      }).then(function(r){
+        addStep("ok", "はんこを押して返す:", "問題の紙に、はんこ(電子署名)を押して送った。", r.sig ? hex(r.sig, 16) + "…" : "(省略)");
+        return sleep(700).then(function(){
+          addStep(r.ok ? "ok" : "ng", "印影で確かめる:", r.ok ? "サイトが印影と見比べて、本物のはんこだと確認した。" : "確認できなかった。");
+          return sleep(300);
+        }).then(function(){
+          result(r.ok ? "ok" : "ng", r.ok ? "ログイン成功！ " : "ログインできませんでした。 ", r.ok ? "まもリス君は、パスワードを1文字も入力していません。" : "");
+          return "done";
+        });
+      });
+    }).then(function(){ lock(false); }, function(){ lock(false); });
+  }
+  bReal.addEventListener("click", function(){ run(RP); });
+  bFake.addEventListener("click", function(){ run("donguri-maii.example"); });
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"パスキーでログインするとき、サイトに送られるものはどれ？", opts:["指紋のデータ","はんこを押した紙(電子署名)","スマホの暗証番号"], a:1,
+     why:"指紋や暗証番号は、スマホのロック解除に使われるだけで、サイトには送られません。送られるのは、はんこを押した結果だけです。"},
+    {q:"サイトから、会員のパスキーの「印影(公開鍵)」が全部盗まれた。どうなる？", opts:["全員ログインされてしまう","印影だけではログインできない"], a:1,
+     why:"印影からはんこは作れません。パスワードとちがい、サイトから漏れても悪用しにくいのがパスキーの強みです。"},
+    {q:"1文字ちがいのにせサイトで、パスキーを使おうとするとどうなる？", opts:["気づかずにログイン情報を渡してしまう","そのサイト用のはんこがないので、動かない","スマホが壊れる"], a:1,
+     why:"はんこにはサイトの名前が彫りこまれていて、ちがうサイトでは使えません。だからパスキーはフィッシングに強いのです。"}
+  ],
+  perfect: "はんこの守り方、ばっちりです！",
+  again: "上のコーナーで、本物とにせものをもう一度くらべてみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

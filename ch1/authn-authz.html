@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>認証と認可の違い</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第1章 本人確認(認証)</span>
+  <h1>認証と認可の違い</h1>
+  <p class="sub">入館証と、「入れる部屋」の話</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>先生、「にんしょう」と「にんか」って、名前がそっくりでまざっちゃう。何が違うの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>森の図書館に入るときを思い出してごらん。入口で<strong>入館証</strong>を見せて、中では<strong>入れる部屋</strong>が決まっているよね。この2つが、認証と認可なんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">認証:あなたはだれ？</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>入口で「まもリスです」と言うだけで通れたら、どうなる？</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>フィッシーが「まもリスです」ってうそをついても入れちゃう！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そう。だから、名乗った本人で間違いないか、証拠を見せてもらう。これが<strong>認証</strong>だよ。</p></div>
+  <div class="key k1"><span class="tag">認証</span><span class="term">英語で Authentication</span><span class="def">「あなたはだれ？」を確かめること。名乗った本人で間違いないかをチェックする。</span></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>証拠って、どんなもの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>大きく3種類あるよ。くわしくは「多要素認証」のページで話すね。</p></div>
+  <div class="ways">
+    <div class="way"><b>知っているもの</b><span>パスワード、暗証番号</span></div>
+    <div class="way"><b>持っているもの</b><span>スマホ、社員証カード</span></div>
+    <div class="way"><b>体の特徴</b><span>指紋、顔</span></div>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">認可:何をしていいの？</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>入口を通れたら、もう図書館のどこへでも行けるの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>行けないよ。まもリス君の入館証で入れるのは閲覧室まで。本の倉庫や館長室は入れないよね。<strong>本人だと分かったうえで、入れる部屋やできることを決める</strong>。これが認可だよ。</p></div>
+  <div class="key k2"><span class="tag">認可</span><span class="term">英語で Authorization</span><span class="def">「あなたは何をしていい？」を決めること。入れる部屋、見られるもの、変えられるものを決める。</span></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>人間の世界だと？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>学校のシステムで、生徒は自分の成績を<strong>見る</strong>だけ。先生は成績を<strong>書きこめる</strong>。共有ファイルの「閲覧のみ」と「編集できる」の違いも、認可なんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">入れる部屋は少なめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>でも、全部の部屋に入れる入館証のほうが便利じゃない？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>便利だけど、その入館証を落としたら？ 拾った人も全部の部屋に入れちゃう。だから、<strong>仕事に必要な部屋の分だけ</strong>入れるようにしておくんだ。</p></div>
+  <div class="key k3"><span class="tag">最小権限</span><span class="term">さいしょうけんげん</span><span class="def">必要な部屋の分だけ許可する考え方。盗まれたり、まちがえたりしたときの被害を小さくできる。</span></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>それから、係が変わったり、卒業や退職をしたりしたら、許可を<strong>すぐ外す</strong>こと。使わなくなった入館証が残っているのも、立派なすき間なんだよ。</p></div>
+  <p class="stage">(その夜、図書館で…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、だれかの入館証を手に入れたぞ。これで館長室の金庫を…あれ？ 閲覧室しか開かないじゃないか！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">まとめ</h2></div>
+  <div class="flow" role="list" aria-label="認証と認可の順番">
+    <div class="gate g1" role="listitem"><span class="step">1. 入口で</span><b>認証</b><span class="ask">「あなたはだれ？」</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g2" role="listitem"><span class="step">2. 中で</span><b>認可</b><span class="ask">「何をしていい？」</span></div>
+  </div>
+  <div class="cards">
+    <div class="card c1"><span class="en">Authentication</span><h3>認証</h3><p>本人かどうか確かめる</p><p class="ex">例:パスワード、顔認証でログイン</p></div>
+    <div class="card c2"><span class="en">Authorization</span><h3>認可</h3><p>できることを決める</p><p class="ex">例:「閲覧のみ」「編集できる」</p></div>
+    <div class="card c3"><span class="en">Least Privilege</span><h3>最小権限</h3><p>必要な分だけ許可する</p><p class="ex">例:異動したら前の部署の権限を外す</p></div>
+  </div>
+  <p class="cia">覚え方:<b>認証は「だれ？」</b>、<b>認可は「なにしていい？」</b></p>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>入口で「だれ？」、中で「なにしていい？」。もうまざらないよ！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>その調子。次は、入口の「証拠」でいちばんよく使われる、パスワードの話をしよう。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">確認クイズ</h2></div>
+  <p>次のできごとに関係が深いのはどれ？</p>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+window.QUIZ = {
+  opts: ["認証","認可","最小権限"],
+  questions: [
+    {q:"スマホを顔に向けたら、ロックが解除された。", a:0, why:"スマホが「持ち主本人かどうか」を顔で確かめています。これは認証です。"},
+    {q:"共有されたファイルを開けたけれど、「閲覧のみ」で書きこめなかった。", a:1, why:"本人とは分かったうえで、「見るだけ」とできることが決められています。これは認可です。"},
+    {q:"アルバイトのレジ係には、売上データを消せる権限を渡さないことにした。", a:2, why:"仕事に必要な分だけ許可しています。これが最小権限の考え方です。"}
+  ],
+  perfect: "入館証、合格です！"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>多要素認証(MFA)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第1章 本人確認(認証)</span>
+  <h1>多要素認証(MFA)</h1>
+  <p class="sub">パスワードが盗まれても、もう1つの鍵で守る</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>先生、もしメールのパスワードまで漏れちゃったら、もうおしまいなの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>だいじょうぶ。ドアに<strong>鍵をもう1つ</strong>付けておけばいいんだ。1つ目の鍵を盗まれても、2つ目がなければ開かないからね。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">「種類のちがう」鍵を組み合わせる</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>「認証と認可」のページで、本人確認の証拠には3種類あると話したね。</p></div>
+  <div class="ways">
+    <div class="way"><b>知っているもの</b><span>パスワード、暗証番号</span></div>
+    <div class="way"><b>持っているもの</b><span>スマホ、社員証カード</span></div>
+    <div class="way"><b>体の特徴</b><span>指紋、顔</span></div>
+  </div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>この中から<strong>種類のちがうもの</strong>を2つ以上組み合わせるのが、多要素認証だよ。</p></div>
+  <div class="key k1"><span class="tag">多要素認証</span><span class="term">MFA(Multi-Factor Authentication)</span><span class="def">種類のちがう証拠を2つ以上使って、本人か確かめること。2つのときは「二要素認証」とも呼ぶ。</span></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>じゃあ、パスワードを2つ聞かれるのも多要素？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>それはちがうんだ。どちらも「知っているもの」だから、まとめて盗まれたら終わり。パスワードと<strong>スマホ</strong>のように、盗み方がちがうもの同士にするのがポイントだよ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">30秒で変わる数字のひみつ</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>スマホのアプリに出てくる6けたの数字、あれはどうなってるの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>最初に設定したとき、アプリとサイトは<strong>同じ「秘密の種」</strong>を受け取っているんだ。あとはそれぞれが「秘密の種」と「いまの時刻」から同じ計算をして、30秒ごとに新しい数字を出している。だから通信しなくても、両方の数字がぴったり合うんだよ。</p></div>
+  <div class="key k2"><span class="tag">ワンタイムパスワード</span><span class="term">1回きり・短い時間だけ使える番号</span><span class="def">時刻をもとに作るものは、30秒ほどで使えなくなる。のぞき見されても、すぐにただの数字になる。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">やってみよう:2つ目の鍵でログイン</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>ワンタイムパスワードでログイン</h3><span>このページの中だけで動いています</span></div>
+    <p class="lab-intro">パスワードはもう入力ずみ。左の「スマホ」に出ている6けたの数字を入れて、ログインしてみよう。</p>
+    <div class="split">
+      <div class="phone" aria-label="スマホの認証アプリ(まね)">
+        <span class="app">認証アプリ</span>
+        <span class="acct-name">どんぐりメール / mamorisu</span>
+        <span class="otp" id="otp" aria-live="off">------</span>
+        <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+        <span class="left" id="left">あと--秒</span>
+      </div>
+      <form class="login" id="login" novalidate>
+        <span class="site">どんぐりメールにログイン</span>
+        <div class="field"><label>メールアドレス</label><span class="static">mamorisu@example.com</span></div>
+        <div class="field"><label>パスワード</label><span class="static">●●●●●●●●●●●● (入力ずみ)</span></div>
+        <div class="field"><label for="code">確認コード(6けた)</label><input class="code-in" id="code" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="000000"></div>
+        <div class="btns">
+          <button class="btn" type="submit">ログイン</button>
+          <button class="btn ghost" type="button" id="old">1分前のコードで試す</button>
+        </div>
+        <p class="res info" id="loginRes" aria-live="polite">数字を入れて「ログイン」を押してね。</p>
+      </form>
+    </div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>1分前のコードだと、もう入れないんだ！ これならフィッシーにパスワードを盗まれても安心だね。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">それでもねらってくる手口</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、2つ目の鍵がないなら、<strong>持ち主に開けさせればいい</strong>のさ。夜中に「ログインを承認しますか？」の通知を何回も送ってやる。うっとうしくなって、つい押すだろう？</p></div>
+  <div class="lab">
+    <div class="lab-head"><h3>通知れんだに耐えられる？</h3><span>まねの通知です</span></div>
+    <p class="lab-intro">きみは今、どこにもログインしようとしていません。ボタンを押すと、フィッシーが通知を送ってきます。</p>
+    <div class="btns"><button class="btn ghost" type="button" id="bombStart">フィッシーが攻撃を始める</button></div>
+    <div class="notif-area" id="notifArea" aria-live="polite"><p class="res info">まだ通知は来ていません。</p></div>
+  </div>
+  <div class="key k3"><span class="tag">MFA疲労攻撃</span><span class="term">通知をれんだして根負けさせる</span><span class="def">自分がログインしていないのに届いた承認の通知は、ぜったいに承認しない。拒否して、パスワードを変えよう。学校や会社なら、すぐに報告しよう。</span></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>もう1つ。「サポートです。確認のためSMSで届いたコードを教えてください」と言われても、<strong>コードは誰にも教えない</strong>。本物のサービスは、コードを聞いたりしないからね。にせのログイン画面にコードを入れさせる手口もあるから、気をつけよう。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">やること</span><h3>鍵を2つに</h3><p>種類のちがう証拠を組み合わせる</p><p class="ex">メールやSNSから、まずオンにしよう</p></div>
+    <div class="card c2"><span class="en">守ること</span><h3>コードは教えない</h3><p>家族やサポートを名乗る人にも</p><p class="ex">入れていいのは、自分で開いた本物の画面だけ</p></div>
+    <div class="card c3"><span class="en">気づくこと</span><h3>身に覚えのない通知</h3><p>承認せずに拒否する</p><p class="ex">パスワードを変えて、学校・会社なら報告</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>帰ったら、メールの多要素認証をオンにする！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>えらい！ 最近は、パスワードそのものを使わない「パスキー」という仕組みも広がっているよ。次のページで話そう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>チッ、何回送っても「拒否」ばかり…。このリス、手ごわくなってきたな…</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- TOTP demo (RFC 6238 style, HMAC-SHA1, 30 s, 6 digits) ---------- */
+(function(){
+  var SECRET = new Uint8Array([77,97,109,111,114,105,115,117,45,68,111,110,103,117,114,105,45,50,48,50]); // demo seed
+  var STEP = 30;
+  var otpEl = document.getElementById("otp"), bar = document.getElementById("bar"), left = document.getElementById("left");
+  var form = document.getElementById("login"), codeIn = document.getElementById("code"), res = document.getElementById("loginRes");
+  var keyP = null, hasCrypto = !!(window.crypto && crypto.subtle);
+  if (hasCrypto){ try { keyP = crypto.subtle.importKey("raw", SECRET, {name:"HMAC", hash:"SHA-1"}, false, ["sign"]); } catch(e){ hasCrypto = false; } }
+  function counterBytes(c){ var b = new Uint8Array(8); for (var i = 7; i >= 0; i--){ b[i] = c & 255; c = Math.floor(c / 256); } return b; }
+  function fallback(c){ var x = (c * 2654435761 + 1013904223) % 1000000; return String(Math.abs(x)).padStart(6,"0"); }
+  function totp(counter){
+    if (!hasCrypto) return Promise.resolve(fallback(counter));
+    return keyP.then(function(k){ return crypto.subtle.sign("HMAC", k, counterBytes(counter)); }).then(function(sig){
+      var h = new Uint8Array(sig), o = h[h.length-1] & 15;
+      var bin = ((h[o] & 127) << 24) | (h[o+1] << 16) | (h[o+2] << 8) | h[o+3];
+      return String(bin % 1000000).padStart(6, "0");
+    });
+  }
+  function nowCounter(){ return Math.floor(Date.now() / 1000 / STEP); }
+  var shown = -1;
+  function tick(){
+    var remain = STEP - Math.floor((Date.now() / 1000) % STEP);
+    left.textContent = "あと" + remain + "秒で新しい数字";
+    bar.style.width = (remain / STEP * 100) + "%";
+    var c = nowCounter();
+    if (c !== shown){ shown = c; totp(c).then(function(code){ otpEl.textContent = code.slice(0,3) + " " + code.slice(3); }); }
+  }
+  tick(); setInterval(tick, 1000);
+  function show(kind, head, text){
+    res.className = "res " + kind; res.textContent = "";
+    var b = document.createElement("b"); b.textContent = head; res.appendChild(b);
+    res.appendChild(document.createTextNode(text));
+  }
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var v = codeIn.value.replace(/\D/g, "");
+    if (v.length !== 6){ show("ng", "6けたで入れてね。", "スマホの数字をそのまま入力しよう。"); return; }
+    var c = nowCounter();
+    Promise.all([totp(c), totp(c-1)]).then(function(r){
+      if (v === r[0] || v === r[1]) show("ok", "ログイン成功！ ", "パスワード(知っているもの)と、スマホ(持っているもの)の2つで本人と確かめられました。");
+      else show("ng", "ログインできません。 ", "コードがちがうか、時間切れです。いまスマホに出ている数字を入れてね。");
+    });
+  });
+  document.getElementById("old").addEventListener("click", function(){
+    totp(nowCounter() - 2).then(function(code){
+      codeIn.value = code;
+      show("info", "1分前のコード「" + code + "」を入れました。", "このまま「ログイン」を押してみよう。");
+    });
+  });
+})();
+
+/* ---------- push-bombing demo ---------- */
+(function(){
+  var area = document.getElementById("notifArea"), startBtn = document.getElementById("bombStart");
+  var timer = null, count = 0;
+  var TAUNTS = ["", "", "まだ届くよ〜", "押せば静かになるよ〜", "眠れないでしょ？ 押しちゃえ", "ずーっと続くよ〜"];
+  function clear(){ area.textContent = ""; }
+  function info(kind, head, text){
+    var p = document.createElement("p"); p.className = "res " + kind;
+    var b = document.createElement("b"); b.textContent = head; p.appendChild(b);
+    p.appendChild(document.createTextNode(text)); area.appendChild(p);
+  }
+  function stop(){ if (timer){ clearInterval(timer); timer = null; } }
+  function renderNotif(){
+    clear();
+    var n = document.createElement("div"); n.className = "notif";
+    var top = document.createElement("div"); top.className = "top";
+    var a = document.createElement("span"); a.textContent = "どんぐりメール";
+    var t = document.createElement("span"); t.textContent = "午前2時" + String(10 + count).padStart(2,"0") + "分";
+    top.appendChild(a); top.appendChild(t);
+    var title = document.createElement("span"); title.className = "title"; title.textContent = "ログインを承認しますか？";
+    var d = document.createElement("span"); d.className = "detail"; d.textContent = "場所:見知らぬ海の底 / 端末:不明なパソコン";
+    var taunt = TAUNTS[Math.min(count, TAUNTS.length-1)];
+    var cnt = document.createElement("span"); cnt.className = "count"; cnt.textContent = count + "回目の通知" + (taunt ? "  「" + taunt + "」" : "");
+    var btns = document.createElement("div"); btns.className = "btns";
+    var ok = document.createElement("button"); ok.type = "button"; ok.className = "btn"; ok.id = "approve"; ok.textContent = "承認する";
+    var ng = document.createElement("button"); ng.type = "button"; ng.className = "btn deny"; ng.id = "deny"; ng.textContent = "拒否する";
+    ok.addEventListener("click", approve); ng.addEventListener("click", deny);
+    btns.appendChild(ok); btns.appendChild(ng);
+    n.appendChild(top); n.appendChild(title); n.appendChild(d); n.appendChild(cnt); n.appendChild(btns);
+    area.appendChild(n);
+  }
+  function push(){ count++; renderNotif(); if (count >= 8) stop(); }
+  function approve(){
+    stop(); clear();
+    info("ng", "フィッシーが入ってしまった！ ", "パスワードを持っていたフィッシーに、きみが2つ目の鍵を開けてあげたことになります。自分がログインしていないときの通知は、何回届いても承認してはいけません。");
+    startBtn.textContent = "もう一度やってみる"; startBtn.disabled = false;
+  }
+  function deny(){
+    stop(); clear();
+    info("ok", "よく耐えた！ ", count + "回目の通知で拒否できました。通知が届いたのは、パスワードがすでに盗まれているサイン。すぐにパスワードを変えて、学校や会社のアカウントなら担当の人に報告しよう。");
+    startBtn.textContent = "もう一度やってみる"; startBtn.disabled = false;
+  }
+  startBtn.addEventListener("click", function(){
+    stop(); count = 0; startBtn.disabled = true; push(); timer = setInterval(push, 2500);
+  });
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"多要素認証になっているのはどれ？", opts:["パスワード+秘密の質問","パスワード+スマホに届くコード","パスワードを2つ入れる"], a:1,
+     why:"「知っているもの(パスワード)」と「持っているもの(スマホ)」の、種類のちがう2つを組み合わせています。ほかは両方とも「知っているもの」です。"},
+    {q:"夜中に「ログインを承認しますか？」という通知が何回も届いた。どうする？", opts:["承認して通知を止める","拒否して、パスワードを変えて報告する","放っておく"], a:1,
+     why:"自分がログインしていないのに届く通知は、パスワードが盗まれているサインです。承認せず、パスワードを変えましょう。"},
+    {q:"「サポートです。確認のためSMSのコードを教えてください」と電話が来た。", opts:["サポートなら教える","誰にも教えない"], a:1,
+     why:"本物のサービスがコードを聞くことはありません。コードを教えることは、2つ目の鍵をわたすのと同じです。"}
+  ],
+  perfect: "2つ目の鍵、しっかり守れました！",
+  again: "上のコーナーでもう一度ためしてみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

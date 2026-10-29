@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>パスワードの使い回しが危ない理由</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第1章 本人確認(認証)</span>
+  <h1>パスワードの使い回しが危ない理由</h1>
+  <p class="sub">1本の合鍵で、家じゅうのドアが開いてしまう</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>先生！ 5語のパスフレーズを作ったよ。すごく強いから、ゲームもSNSもメールも、全部これにしたんだ。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>パスフレーズはえらい！ でも「全部これ」は危ないんだ。家の玄関も、自転車も、ドングリ倉庫も、ぜんぶ同じ鍵にしているのと同じだからね。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">漏れるのは、きみのせいとは限らない</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>でも、誰にも教えなければ、ばれないでしょ？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>きみが気をつけていても、<strong>サービスの側</strong>が攻撃されて、会員のメールアドレスやパスワードがまとめて盗まれることがあるんだ。ニュースで「〇万人分の情報が流出」と聞いたことがあるよね。</p></div>
+  <div class="key k1"><span class="tag">情報漏えい</span><span class="term">自分では防げないこともある</span><span class="def">サービス側から、会員のアドレスやパスワードが外に漏れてしまうこと。いつかどこかで起きる、と考えておくのが安全。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">盗んだ合鍵で、ほかのドアも試す</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、ゲームサイトから漏れた「アドレスとパスワードの一覧」を手に入れたぞ。同じ組み合わせで、SNSや通販サイトにも片っぱしからログインしてみるのさ。</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>えっ、パスワードを当てなくても、もう答えを持ってるってこと…？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そう。どんなに強いパスワードでも、<strong>答えそのものが盗まれたら強さは関係ない</strong>。使い回していると、1つの漏れが全部に広がるんだ。</p></div>
+  <div class="key k2"><span class="tag">パスワードリスト攻撃</span><span class="term">盗んだ一覧をほかのサイトで試す</span><span class="def">どこかで漏れたアドレスとパスワードの組み合わせを、別のサービスでそのまま試すやり方。使い回している人だけが入られる。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">やってみよう</h2></div>
+  <div class="lab">
+    <div class="lab-head"><h3>合鍵ドミノ:ゲームサイトから漏れたら？</h3></div>
+    <p class="lab-intro">まもリス君の5つのアカウントです。それぞれ、ゲームサイトと<strong>同じ</strong>パスワードか、<strong>別</strong>のパスワードかを切りかえてみよう。</p>
+    <div class="accts" id="accts"></div>
+    <div class="legend" aria-hidden="true"><span><i class="l1"></i>漏れた元</span><span><i class="l2"></i>そのまま入られる</span><span><i class="l3"></i>メール経由で乗っ取られる</span><span><i class="l4"></i>無事</span></div>
+    <div aria-live="polite" class="explain">
+      <p class="verdict" id="verdict"></p>
+      <div class="explain" id="explain"></div>
+    </div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>メールだけ同じにしてたら、別のパスワードのサイトまでオレンジになった！ なんで？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>多くのサイトは「パスワードを忘れた方」を押すと、<strong>登録したメールに再設定の案内</strong>を送るよね。メールを乗っ取られたら、その案内を使ってほかのサイトのパスワードも変えられてしまうんだ。だからメールは<strong>合鍵を作れる鍵</strong>。いちばん大事に守ろう。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">全部ちがうと覚えられない？</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>じゃあ <code>mamorisu-game</code>、<code>mamorisu-sns</code> みたいに、後ろだけ変えるのは？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>1つ見られたら、ほかも「たぶんこれ」と当てられちゃう。おすすめは<strong>パスワード管理アプリ</strong>。サイトごとにでたらめなパスワードを作って覚えてくれるから、きみが覚えるのは、アプリを開くための強いパスフレーズ1つだけでいいんだ。</p></div>
+  <div class="key k3"><span class="tag">パスワード管理アプリ</span><span class="term">パスワードマネージャー</span><span class="def">サイトごとに別々のパスワードを作って、安全にしまっておく道具。スマホやブラウザに最初から入っているものもある。学校や会社では、決められたルールに従おう。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">知っておくこと</span><h3>漏れは起きる</h3><p>サービス側から漏れることもある</p><p class="ex">ニュースで流出を見たら、すぐパスワードを変える</p></div>
+    <div class="card c2"><span class="en">危ないこと</span><h3>1つで全部開く</h3><p>使い回すと被害が広がる</p><p class="ex">後ろだけ変える作り方も、すぐ推測される</p></div>
+    <div class="card c3"><span class="en">やること</span><h3>サイトごとに別々</h3><p>管理アプリにまかせる</p><p class="ex">メールのパスワードは、とくに大事に</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>でも先生、もしメールのパスワードまで漏れちゃったら、もうおしまい？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そこで役に立つのが、鍵をもう1つ増やす「多要素認証」。パスワードが盗まれても、それだけでは入れなくなるんだ。次のページで話そう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>チッ、このリス、サイトごとにパスワードを変えやがった。盗んだ一覧が、ただの紙切れだ…</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+/* ---------- spare-key domino ---------- */
+(function(){
+  var ACCTS = [
+    {id:"game", nm:"ゲームサイト", sub:"ここから漏れた", source:true},
+    {id:"sns", nm:"SNS", sub:"友だちとのやりとり"},
+    {id:"mail", nm:"メール", sub:"パスワード再設定の案内が届く"},
+    {id:"shop", nm:"ネット通販", sub:"カード情報を登録ずみ"},
+    {id:"school", nm:"学校・会社のアカウント", sub:"みんなの情報につながる"}
+  ];
+  var same = {sns:true, mail:true, shop:true, school:true};
+  var box = document.getElementById("accts"), verdict = document.getElementById("verdict"), explain = document.getElementById("explain");
+  var LABEL = {source:"漏れた元", hit:"入られる", reset:"乗っ取られる", safe:"無事"};
+  function statusOf(){
+    var st = {};
+    ACCTS.forEach(function(a){
+      if (a.source) st[a.id] = "source";
+      else if (same[a.id]) st[a.id] = "hit";
+      else if (same.mail && a.id !== "mail") st[a.id] = "reset";
+      else st[a.id] = "safe";
+    });
+    return st;
+  }
+  function build(){
+    ACCTS.forEach(function(a){
+      var row = document.createElement("div"); row.className = "acct";
+      var nm = document.createElement("div"); nm.className = "nm"; nm.textContent = a.nm;
+      var sm = document.createElement("small"); sm.textContent = a.sub; nm.appendChild(sm);
+      var ctl = document.createElement("div"); ctl.className = "ctl";
+      if (a.source){
+        var f = document.createElement("span"); f.className = "fixed"; f.textContent = "もとのパスワード"; ctl.appendChild(f);
+      } else {
+        var seg = document.createElement("div"); seg.className = "seg"; seg.setAttribute("role","group"); seg.setAttribute("aria-label", a.nm + "のパスワード");
+        [["同じ",true],["別",false]].forEach(function(o){
+          var b = document.createElement("button"); b.type = "button"; b.id = "t-" + a.id + "-" + (o[1] ? "same" : "diff");
+          b.textContent = o[0];
+          b.addEventListener("click", function(){ same[a.id] = o[1]; render(); });
+          seg.appendChild(b);
+        });
+        ctl.appendChild(seg);
+      }
+      var st = document.createElement("span"); st.className = "st"; st.id = "st-" + a.id;
+      row.appendChild(nm); row.appendChild(ctl); row.appendChild(st);
+      box.appendChild(row);
+    });
+  }
+  function render(){
+    var st = statusOf(), hit = 0, reset = 0;
+    ACCTS.forEach(function(a){
+      var el = document.getElementById("st-" + a.id);
+      el.className = "st " + st[a.id]; el.textContent = LABEL[st[a.id]];
+      if (st[a.id] === "hit") hit++;
+      if (st[a.id] === "reset") reset++;
+      if (!a.source){
+        document.getElementById("t-" + a.id + "-same").setAttribute("aria-pressed", same[a.id] ? "true" : "false");
+        document.getElementById("t-" + a.id + "-diff").setAttribute("aria-pressed", same[a.id] ? "false" : "true");
+      }
+    });
+    var lost = hit + reset;
+    verdict.className = "verdict " + (lost === 0 ? "good" : (lost >= 3 ? "bad" : "mid"));
+    verdict.textContent = lost === 0 ? "ゲームサイト以外は、全部無事！" : "ゲームサイト以外に、" + lost + "つ" + (lost === 4 ? "全部" : "") + "のアカウントが危ない";
+    explain.textContent = "";
+    var lines = [];
+    if (hit > 0) lines.push("同じパスワードの " + hit + "つは、漏れた一覧をそのまま使って入られます。");
+    if (reset > 0) lines.push("メールが乗っ取られたので、別のパスワードにしていた " + reset + "つも「パスワード再設定」の案内を悪用されて乗っ取られます。");
+    if (lost === 0) lines.push("サイトごとに別々のパスワードなら、1つ漏れても被害はそこで止まります。");
+    else if (same.mail) lines.push("まずはメールを「別」にしてみよう。");
+    else lines.push("残りも「別」にすると、被害を止められます。");
+    lines.forEach(function(t){ var p = document.createElement("p"); p.textContent = t; explain.appendChild(p); });
+  }
+  build(); render();
+})();
+</script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"よく使う通販サイトから、会員のパスワードが漏れたとニュースで知った。どうする？", opts:["何もしない","通販サイトだけパスワードを変える","同じパスワードを使っているサイトも全部変える"], a:2,
+     why:"漏れたパスワードは、ほかのサイトでも試されます。同じものを使っているところは全部変えましょう。"},
+    {q:"「基本のパスワード+サイト名」(例: mamorisu-game)という作り方は？", opts:["サイトごとに違うから安全","1つ見られると、ほかも推測される"], a:1,
+     why:"ルールが分かれば、ほかのサイトの分も当てられます。パスワード管理アプリで、でたらめなものを作るのが安全です。"},
+    {q:"いちばん守りを固めたいアカウントはどれ？", opts:["ゲーム","メール","動画サイト"], a:1,
+     why:"メールにはパスワード再設定の案内が届くので、乗っ取られるとほかのサイトまで乗っ取られます。"}
+  ],
+  perfect: "フィッシーの一覧は紙切れに！",
+  again: "合鍵ドミノでもう一度試してみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

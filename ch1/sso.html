@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>シングルサインオン</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Zen+Maru+Gothic:wght@500;700&family=M+PLUS+1+Code:wght@500;700&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="toc" id="toc" aria-label="もくじ"></nav>
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">第1章 本人確認(認証)</span>
+  <h1>シングルサインオン</h1>
+  <p class="sub">1回のログインで、いろいろなサービスへ</p>
+  <div class="meta"><span class="chip">読む時間 約3分</span><span class="chip">クイズ 3問</span></div>
+  <div class="cast">
+    <div class="cast-item"><span class="avatar av-kagi"><svg role="img" aria-label="カギまる先生"><use href="#av-kagi"/></svg></span><span><b>カギまる先生</b><br>南京錠の妖精</span></div>
+    <div class="cast-item"><span class="avatar av-mamo"><svg role="img" aria-label="まもリス君"><use href="#av-mamo"/></svg></span><span><b>まもリス君</b><br>心配性のリス</span></div>
+    <div class="cast-item"><span class="avatar av-fishy"><svg role="img" aria-label="フィッシー"><use href="#av-fishy"/></svg></span><span><b>フィッシー</b><br>釣りが得意な小悪党</span></div>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="s1">
+  <div class="scene-head"><span class="scene-no">①</span><h2 id="s1">はじめに</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>学校のタブレットって、朝に学校のアカウントで1回ログインすると、授業のアプリも、ドリルも、図書館の予約も、そのまま使えるんだ。パスワード、1つしか覚えてないのに。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>それが<strong>シングルサインオン</strong>だよ。ネットでよく見る「Googleでログイン」「Appleでサインイン」のボタンも、同じなかまなんだ。</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s2">
+  <div class="scene-head"><span class="scene-no">②</span><h2 id="s2">遊園地のリストバンド</h2></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>フリーパスの遊園地を思い出してごらん。入口の受付で1回だけチケットを確かめて、<strong>リストバンド</strong>を巻いてもらう。あとは、どのアトラクションでも、係の人はリストバンドを見るだけで乗せてくれるよね。</p></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>ジェットコースターの係の人は、ぼくのチケットを見てないんだね。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そこがポイント。ドリルのアプリは、きみのパスワードを知らないし、預かってもいない。本人確認は<strong>受付(学校のアカウント)にまかせて</strong>、「この人は本人です」という証明だけを受け取っているんだ。</p></div>
+  <div class="flow three" role="list" aria-label="シングルサインオンの流れ">
+    <div class="gate g1" role="listitem"><span class="step">1. ドリルアプリ</span><b>受付へどうぞ</b><span class="ask">「先に受付で確かめてきてね」</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g1" role="listitem"><span class="step">2. 学校のアカウント</span><b>本人確認</b><span class="ask">パスワード+確認コード</span></div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="gate g2" role="listitem"><span class="step">3. ドリルアプリ</span><b>証明を見て通す</b><span class="ask">パスワードは受け取らない</span></div>
+  </div>
+  <div class="key k1"><span class="tag">シングルサインオン</span><span class="term">SSO(Single Sign-On)</span><span class="def">1回の本人確認で、いくつものサービスを使えるようにするしくみ。本人確認は1か所にまとめて、各サービスはその結果を信じる。</span></div>
+  <div class="key k2"><span class="tag">IDプロバイダー</span><span class="term">本人確認を引き受ける「受付」</span><span class="def">学校や会社のアカウント、Google、Appleなど。ここが「この人は本人です」という証明を出す。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s3">
+  <div class="scene-head"><span class="scene-no">③</span><h2 id="s3">便利なだけじゃない</h2></div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>楽になるのは分かったけど、安全にもなるの？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>なるんだ。覚えるパスワードが1つなら、<strong>長くて強いもの</strong>にしやすい。多要素認証も受付1か所でかければ、全部のサービスに効く。それに、小さなサービスから情報が漏れても、そこにパスワードは置いていないから、使い回しの連鎖が起きないんだよ。</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>学校や会社にとってもうれしい。卒業や退職のとき、受付のアカウント1つを止めれば、全部のサービスにまとめて入れなくなる。「認証と認可」で話した「使わなくなった入館証を残さない」が、かんたんにできるんだ。</p></div>
+  <div class="tablewrap">
+    <table class="vs">
+      <thead><tr><th scope="col"></th><th scope="col">サービスごとにパスワード</th><th scope="col">シングルサインオン</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">覚えるパスワード</th><td><span class="m n">✕ サービスの数だけ</span></td><td><span class="m y">○ 1つだけ</span></td></tr>
+        <tr><th scope="row">多要素認証</th><td><span class="m p">△ 1つずつ設定</span></td><td><span class="m y">○ 受付でまとめて</span></td></tr>
+        <tr><th scope="row">小さなサービスから漏れたら</th><td><span class="m n">✕ 使い回しなら連鎖</span></td><td><span class="m y">○ パスワードは置いていない</span></td></tr>
+        <tr><th scope="row">卒業・退職のとき</th><td><span class="m p">△ 1つずつ止める</span></td><td><span class="m y">○ 1か所で止まる</span></td></tr>
+        <tr><th scope="row">受付のアカウントを盗まれたら</th><td><span class="m p">△ そのサービスだけ</span></td><td><span class="m n">✕ 全部に入られる</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s4">
+  <div class="scene-head"><span class="scene-no">④</span><h2 id="s4">リストバンドがマスターキーになる</h2></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>ククク、表のいちばん下を見たか？ 学校のアカウントさえ釣り上げれば、授業もドリルもメールも、ぜーんぶオレのものだ！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>それがシングルサインオンの弱点だ。受付のアカウントは、<strong>全部の扉を開けるマスターキー</strong>になる。だからこそ、このアカウントには多要素認証やパスキーを必ず付けて、いちばん固く守るんだ。</p></div>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>なら、にせの「Googleでログイン」画面を出してやる。みんな見なれているから、気にせずパスワードを入れるだろう？</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>受付の画面が出たら、<strong>アドレス欄が本物の受付のものか</strong>を確かめよう。パスキーを使っていれば、にせの受付ではそもそも動かないから、もっと安心だね。</p></div>
+  <div class="key k3"><span class="tag">連携の許可画面</span><span class="term">「このアプリに〇〇を許可しますか？」</span><span class="def">ログインのついでに、メールや連絡先を見る権限をアプリに渡す画面。これは「認証」ではなく「認可」。何を許可するのか読んでから押し、使わなくなった連携はアカウントの設定から外す。</span></div>
+</section>
+
+<section class="scene" aria-labelledby="s5">
+  <div class="scene-head"><span class="scene-no">⑤</span><h2 id="s5">気をつけること</h2></div>
+  <div class="todo">
+    <h3>シングルサインオンを使うときのコツ</h3>
+    <ul>
+      <li>受付になるアカウント(学校・会社・Google・Appleなど)には、多要素認証かパスキーを必ず付ける</li>
+      <li>「〇〇でログイン」の画面が出たら、アドレス欄を確かめる。メールのリンクから開いた画面には入力しない</li>
+      <li>許可画面は、何を許可するか読んでから押す。ゲームが「メールを読む」権限をほしがったら要注意</li>
+      <li>共有のパソコンでは、使い終わったら受付のアカウントからログアウトする(1つ開けっぱなしだと、全部開けっぱなし)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="scene" aria-labelledby="s6">
+  <div class="scene-head"><span class="scene-no">⑥</span><h2 id="s6">まとめ</h2></div>
+  <div class="cards">
+    <div class="card c1"><span class="en">しくみ</span><h3>受付は1か所</h3><p>各サービスは証明を信じる</p><p class="ex">サービスにパスワードを渡さない</p></div>
+    <div class="card c2"><span class="en">よいところ</span><h3>強くしやすい</h3><p>パスワード1つ、多要素認証もまとめて</p><p class="ex">やめるときも1か所で止まる</p></div>
+    <div class="card c3"><span class="en">守ること</span><h3>マスターキーを固く</h3><p>受付のアカウントこそ多要素認証</p><p class="ex">にせの受付画面と許可画面に注意</p></div>
+  </div>
+  <div class="msg mamo right"><span class="avatar"><svg aria-hidden="true"><use href="#av-mamo"/></svg></span><p class="bubble"><span class="name">まもリス</span>学校のアカウントは、ぼくのいちばん大事なドングリだね。3か所に分けて埋めるわけにはいかないから、金庫を固くしておく！</p></div>
+  <div class="msg kagi"><span class="avatar"><svg aria-hidden="true"><use href="#av-kagi"/></svg></span><p class="bubble"><span class="name">カギまる</span>そのとおり。次は、ログイン画面でよく見る「私はロボットではありません」、CAPTCHAの話をしよう。</p></div>
+  <p class="stage">(画面の端から…)</p>
+  <div class="msg fishy"><span class="avatar"><svg aria-hidden="true"><use href="#av-fishy"/></svg></span><p class="bubble"><span class="name">フィッシー</span>マスターキーを釣ろうとしたら、確認コードまで聞かれた…。いちばん固い扉を選んじまったか…！</p></div>
+</section>
+
+<section class="scene" aria-labelledby="s7">
+  <div class="scene-head"><span class="scene-no">⑦</span><h2 id="s7">確認クイズ</h2></div>
+  <div class="quiz" id="quiz"></div>
+  <p class="score" id="score" hidden></p>
+  <button class="retry" id="retry" type="button" hidden>もう一度チャレンジ</button>
+</section>
+
+<nav class="pager" id="pager" aria-label="ページ移動"></nav>
+<footer>まもリスとカギまるのセキュリティ教室</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+<script>
+window.QUIZ = {
+  questions: [
+    {q:"「Googleでログイン」を使ってドリルアプリに入った。ドリルアプリが受け取るものは？", opts:["Googleのパスワード","「この人は本人です」という証明"], a:1,
+     why:"本人確認はGoogle(受付)が行い、ドリルアプリはその結果だけを受け取ります。アプリにパスワードは渡りません。"},
+    {q:"シングルサインオンでいちばん固く守るべきなのは？", opts:["受付になるアカウント","ドリルアプリのアカウント","図書館の予約アプリ"], a:0,
+     why:"受付のアカウントは、全部のサービスを開けるマスターキーです。多要素認証やパスキーを必ず付けましょう。"},
+    {q:"ゲームアプリの連携で「メールの読み取りを許可しますか？」と出た。どう考える？", opts:["ログインに必要なので、いつも許可する","ゲームにメールの権限はいらないはず。読んでから断る"], a:1,
+     why:"許可画面は「認可」です。必要のない権限は渡さないのが最小権限の考え方。使わなくなった連携も、設定から外しておきましょう。"}
+  ],
+  perfect: "マスターキーの守り方、ばっちりです！",
+  again: "④の「リストバンドがマスターキーになる」を読み返してみよう"
+};
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
